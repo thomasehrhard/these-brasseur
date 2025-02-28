@@ -41,20 +41,19 @@
 
 \maketitle
 
-\section*{Introduction}
+\section*{Contexte}
 
 \subsection*{Logique linéaire}
 
-La Logique Linéaire ($\LL$) est née de l'étude dénotationnelle des
-preuves et des programmes.
+La Logique Linéaire~\cite{Girard87} ($\LL$) est née de l'étude
+dénotationnelle des preuves et des programmes.
 %
 C'est un raffinement de la logique intuitioniste (et de la logique
 classique) qui permet de parler de preuves qui sont linéaires au sens
 où elles utilisent exactment une fois, et complètement, leurs
 hypothèses.
 %
-Ainsi la $\LL$XSCC
-introduit une implication linéaire $\Limpl AB$, et une
+Ainsi la $\LL$ introduit une implication linéaire $\Limpl AB$, et une
 preuve de cette formule est une preuve de $B$ qui dépend linéairement
 de $A$.
 %
@@ -72,7 +71,7 @@ traitement explicite des règles structurelles.
 
 \subsection*{$\LL$ et $\lambda$-calcul différentiels}
 
-Ainsi les modèles de la $\LL$ sont tout-à-fait similaires aux
+Ainsi les modèles de la $\LL$ sont tout à fait similaires aux
 catégories qui apparaissent en algèbre linéaire et en analyse
 fonctionnelle où les objets fondamentaux sont des espaces vectoriels
 de dimension possiblement infinie, et équipés en général d'une
@@ -109,7 +108,8 @@ Leibniz, règle de la chaîne etc.
 Sans surprise, ces règles de réduction exigent de pouvoir écrire la
 somme de deux termes de même type.
 %
-Par exemple le terme $\Diffapp{(\Abst f{\Timpl AA}{\BL f\,(\RD f\,P)})}N$ où
+Par exemple le terme
+$R=\Diffapp{(\Abst f{\Timpl AA}{\BL f\,(\RD f\,P)})}N$ où
 $N:\Timpl AA$ et $P:A$ se réduit en
 $$
 \Abst f{\Timpl AA}{N\,(\RD f\, P)}
@@ -123,15 +123,16 @@ l'occurrence bleue de $f$, et le deuxième celle où on substitue
 l'occurrence rouge.
 %
 Cette deuxième substitution est un peu plus subtile: en effet
-l'occurrence bleue de $f$ pourrait utiliser $\RD f\,P$ plusieurs fois,
-ou ne pas l'utiliser du tout, donc pour substituer linéairement dans
-$\RD f$, il faut d'abord faire en sorte que $\BL f$ utilise son
-argument exactement une fois, c'est exactement pour cette raison qu'on
-utilise une application différentielle de $\BL f$ à $N\,P$, qui est
-$\RD f\,P$ où $\RD f$ est substitué par $N$ exactement une fois.
+l'occurrence bleue de $f$ dans $R$ pourrait utiliser $\RD f\,P$
+plusieurs fois, ou ne pas l'utiliser du tout, donc pour substituer
+linéairement dans $\RD f$, il faut d'abord faire en sorte que $\BL f$
+(dont on ne connaît pas encore la valeur) utilise son argument
+exactement une fois, c'est exactement pour cette raison qu'on utilise
+une application différentielle de $\BL f$ à $N\,P$, qui est $\RD f\,P$
+où $\RD f$ est substitué par $N$ exactement une fois.
 
 Ces opérations syntaxiques différentielles ont leur contrepartie en
-$\LL$ qui sont de nouvelles règles de déduction associées à
+$\LL$, qui sont de nouvelles règles de déduction associées à
 l'exponentielle: de façon intéressante ces règles sont les duales des
 règles structurelles et étendent la $\LL$ ordinaire en un nouveau
 système: la $\LL$ différentielle.
@@ -139,12 +140,11 @@ système: la $\LL$ différentielle.
 Ces extensions différentielles de la $\LL$ et du $\lambda$-calcul ont
 d'excellentes propriétés opérationnelles et dénotationnelles, et
 permettent notamment d'introduire une notion syntaxique de
-développement de Taylor pour les $\lambda$-termes et les preuves s'est
-révélé être un outil puissant en théorie de la démonstration et dans
-l'étude des langages fonctionnels%
-\footnote{L'introduction de ces
-  extensions ont valu à Thomas Ehrhard et Laurent Regnier le prix
-  Alonzo Church 2024.}.
+développement de Taylor pour les $\lambda$-termes et les preuves qui
+s'est révélé être un outil puissant en théorie de la démonstration et
+dans l'étude des langages fonctionnels%
+\footnote{L'introduction de ces extensions ont valu à Thomas Ehrhard
+  et Laurent Regnier le prix Alonzo Church 2024.}.
 
 
 % La Logique Linéaire différentielle est une extension de la LL dans laquelle on peut extraire la meilleure approximation linéaire (en un sens opérationnel) d'une preuve ou d'un programme. Cela est d'abord apparu syntaxiquement, à l'aide d'une découverte importante qui à été récompensée par le prix Church en 2024 : l’introduction du lambda calcul différentiel. Celui-ci est équipé d'un terme $sD M dot N$, et d'une substitution linaire correspondant. Une règle de bêta réduction est introduite, mais le calcul est fondamentalement non déterministe, ce qui s'exprime syntaxiquement par une "somme" de programmes.
@@ -176,6 +176,8 @@ l'étude des langages fonctionnels%
 
 % TODO : paragraphes sur les modèles de LLdiff ?
 
+\section*{Programme de recherche}
+
 \subsection*{Différentiation cohérente}
 Malgré leurs bonnes propriétés, ces extensions différentielles
 présentent une caractéristique que l'on peut considérer comme un
@@ -204,13 +206,14 @@ objet $X$ de $\cL$ sur l'objet $\Sfun X$ des paires sommables
 d'éléments de $X$.
 %
 Dans ce contexte, la structure différentielle devient une loi
-distributive entre $\cS$ et l'exponentielle $\Oc\_$ satisfaisant
+distributive entre $\Sfun$ et l'exponentielle $\Oc\_$ satisfaisant
 certaines propriétés supplémentaires.
 %
 Le travail de thèse d'Aymeric~Walch, commencé en 2022, a montré qu'en
 remplaçant ``paires sommables'' par ``familles sommables indexées par
 les entiers'', on rend compte dans le même formalisme de tout le
-développement de Taylor~\cite{EhrhardWalch23b}.
+développement de Taylor et de la formule de Faà di
+Bruno~\cite{EhrhardWalch23b}.
 
 Il a aussi été possible de développer une version syntaxique de la
 différentiation cohérente, qui se présente comme une extension du
@@ -225,34 +228,101 @@ Qui plus est, on a pu constater que la plupart des modèles connus de
 la $\LL$ sont aussi des modèles de la différentiation cohérente (et du
 développement de Taylor cohérent).
 %
-De plus, la structure différentielle de tous ces modèles admet une
-description très simple qui se réduit à constater que l'objet
-$\With\Sone\Sone$ a une structure de $\oc$-coalgèbre: on dit qu'elle
-est \emph{représentable}.
+La structure différentielle de tous ces modèles admet une description
+très simple qui se réduit à constater que l'objet $\With\Sone\Sone$ a
+une structure de $\oc$-coalgèbre: on dit que cette structure est
+\emph{représentable}.
 %
 Et de même la développement de Taylor cohérent se ramène, dans ces
 modèles, à une structure de $\oc$-coalgèbre sur
 $\Sone\IWith\Sone\IWith\cdots$.
 
-\subsection*{Objectifs de la thèse}
+\subsection*{Objectifs et déroulement de la thèse}
 Pour l'instant, on ne sait pas voir la différentiation cohérente comme
 un système logique: elle se présente comme un formalisme purement
-catégorique, bien qu'elle possède un calcul déterministe sous-jacent
-comme on l'a vu.
+catégorique.
 %
-Le but de cette thèse sera de répondre à cette problématique,
-notamment en essayant de profiter de l'existence de structures
-cohérentes différentielles cohérentes dans de nombreux modèles de
+La version différentielle cohérente de $\PCF$ évoquée ci-dessus ne
+peut pas être considérée comme un système logique, c'est
+essentiellement un $\lambda$-calcul étendu de façon \emph{ad hoc} avec
+des constructions syntaxiques qui reflètent directement les structures
+catégoriques des modèles de la différentiation cohérente.
+
+Le but principal de cette thèse sera de répondre à cette
+problématique, en essayant notamment de profiter de l'existence de
+structures différentielles cohérentes dans de nombreux modèles de
 $\LL$.
 %
-En effet, la $\LL$ donne un statut très clair aux polarités logiques
-et il se trouve justement que les formules positives de la $\LL$ sont
-celle dont la sémantique possède canoniquement une structure de
-$\oc$-coalgèbre.
+En effet, la $\LL$ donne un statut très clair aux polarités logiques:
+les formules positives de la $\LL$ sont interprétées dans les modèles
+par des $\oc$-coalgèbres.
+%
+Or on a vu que les modèles représentables de la différentiation
+cohérente sont justement caractérisés par l'existence d'une
+$\oc$-coalgèbre particulière.
+%
+Une direction naturelle sera donc de chercher à développer un système
+cohérent différentiel dans un cadre de $\LL$ polarisée.
+%
+On pense pouvoir attaquer cette partie du programme de recherche en
+fin de première année de thèse et elle devrait nous occuper jusqu'à la
+fin de la thèse car on ne se contentera pas d'un calcul des séquents,
+il faudra aussi développer des réseaux de preuve, comprendre comment
+$\PCF$ différentiel cohérent se traduit dans ces réseaux etc.
 
-Ce sera une thèse de nature essentiellement théorique, qui pourra aussi comporter des aspects de programmation: implémentation de machines abstraites pour les langages de programmation fonctionnelle avec différentiation cohérente, vérification de preuves en Coq. Il y aura aussi un important travail bibliographique, surtout au début de la thèse autour de la théorie de la démonstration de la Logique Linéaire: calcul des séquents et réseaux de preuves, et notamment des systèmes polarisés. La première année se concentrera sur l'analyse des liens entre LL différentielle et différentiation cohérente dans le but de mieux comprendre en quel sens la LL différentielle est une "dégénérescence" de la différentiation cohérente. Plus précisément on tentera de montrer que, dans le cadre des catégories additives, la différentiation cohérente est équivalente à la LL différentielle. A partir de ce résultat on tentera d'analyser la différentiation cohérente comme un ensemble de contraintes sur la LL différentielle, exprimées peut-être en termes de réductibilité et de dualité (suivant un schéma standard en LL). Muni de ces résultats, on devrait pouvoir aborder à partir de la deuxième année le coeur de la question, peut-être dans le cadre de la logique linéaire polarisée, puisque, d'un point de vue logique, la différentiation cohérente semble être liée à l'existence d'un type positif particulier. On vise la publication d'un premier article de conférence internationale durant la 2ème année.
+Avant cela, en première année, on cherchera a mieux comprendre le lien
+entre la $\LL$ différentielle et la différentiation cohérente.
+%
+Pour ce faire, on étendra $\PCF$ cohérent différentiel avec la
+possibilité d'additionner librement les termes de même type.
+%
+On montrera que le $\lambda$-calcul différentiel peut être plongé dans
+cette extension de $\PCF$ ce qui permettra de mieux comprendre le lien
+entre les opérations différentielles des deux formalismes.
+%
+Ce travail syntaxique sera mené en parallèle avec son analogue
+sémantique qui devrait être plus simple et mener à la conclusion que,
+dans un cadre de catégorie additive (où toutes les paires de
+morphismes du même type sont sommables), la différentiation cohérente
+devrait être équivalente à la différentiation ordinaire.
+%
+On espère que cette analyse pourra suggérer des restrictions sur la
+$\LL$ différentielle qui reflètent la différentiation cohérente.
+%
+En cas de succès dans cette entreprise, on la généralisera au cas de
+$\PCF$ de Taylor cohérent.
 
-A court terme, on pourra raffiner les résultats sur la développement de Taylor des langages de programmation fonctionnels en exploitant deux faits: d'une part l'aspect "cohérence" du nouveau formalisme correspond au déterminisme (ou au caractère probabiliste) des programmes, qui n'était pas directement pris en compte par le développement de Taylor en LL différentielle. D'autre part, le formalisme différentiel cohérent admet une extension très naturelle aux différentielles de tous ordres dans laquelle le développement de Taylor devient une opération élémentaire. A plus long terme, on espère utiliser le cadre différentiel cohérent pour développer de nouvelles méthodes d'optimisation avec des applications dans un cadre probabiliste. En effet, un des modèles les plus naturels de la différentiation cohérente est celui des espaces cohérents probabilistes dans lequel les extensions probabilistes de PCF peuvent être interprétées.
+La première année sera aussi consacrée à un important travail
+bibliographique autour de la théorie de la démonstration de la $\LL$:
+calcul des séquents et réseaux de preuves, et notamment des systèmes
+polarisés. 
+
+% Un autre intérêt majeur de la différentiation cohérente par rapport au
+% $\lambda$-calcul différentiel est sa compatibilité avec la récursion
+% générale (rappeleons que le langage $\PCF$, que nous avons étendu avec
+% la différentiation cohérente, est un langage de programmation
+% Turing-complet, muni d'un opérateur de points fixes qui permet toutes
+% les définitions récursives).
+% %
+% Cela suggère de 
+
+Si le temps le permet en fin de thèse, on espère ouvrir des
+perspectives en utilisant le cadre différentiel cohérent pour
+reformuler des méthodes d'optimisation existantes ou en développer de
+nouvelles, dans un cadre de programmation probabiliste.
+%
+En effet, un des modèles les plus naturels de la différentiation
+cohérente est celui des espaces cohérents probabilistes dans lequel
+les extensions probabilistes de PCF peuvent être interprétées.
+
+Il s'agira d'une thèse de nature essentiellement théorique, qui pourra
+aussi comporter des aspects de programmation: implémentation de
+machines abstraites pour les langages de programmation fonctionnelle
+avec différentiation cohérente, vérification de preuves en Coq.
+
+On vise la publication d'un premier article en deuxième année,
+probablement sur les liens entre différentiation standard et
+différentiation cohérente.
 
 
 \bibliographystyle{plain}
