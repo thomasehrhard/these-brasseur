@@ -117,10 +117,10 @@ $$
 \Abst f{\Timpl AA}{(\Diffapp{\BL f}{(N\,P)})(\RD f\,P)}\,.
 $$
 Opérationnellement, cette somme signifie qu'il y a deux façons de
-remplacer \emph{exactement une} occurrence de $f$ dans $f\,(f\, P)$: le
-premier terme de la somme correspond au premier choix où on substitue
-l'occurrence bleue de $f$, et le deuxième celle où on substitue
-l'occurrence rouge.
+remplacer \emph{exactement une} occurrence de $f$ par $N$ dans
+$f\,(f\, P)$: le premier terme de la somme correspond au premier choix
+où on substitue l'occurrence bleue de $f$, et le deuxième celle où on
+substitue l'occurrence rouge.
 %
 Cette deuxième substitution est un peu plus subtile: en effet
 l'occurrence bleue de $f$ dans $R$ pourrait utiliser $\RD f\,P$
@@ -143,8 +143,9 @@ permettent notamment d'introduire une notion syntaxique de
 développement de Taylor pour les $\lambda$-termes et les preuves qui
 s'est révélé être un outil puissant en théorie de la démonstration et
 dans l'étude des langages fonctionnels%
-\footnote{L'introduction de ces extensions ont valu à Thomas Ehrhard
-  et Laurent Regnier le prix Alonzo Church 2024.}.
+\footnote{L'introduction de ces extensions dans les années 2000 ont
+  valu à Thomas Ehrhard et Laurent Regnier le prix Alonzo Church
+  2024.}.
 
 
 % La Logique Linéaire différentielle est une extension de la LL dans laquelle on peut extraire la meilleure approximation linéaire (en un sens opérationnel) d'une preuve ou d'un programme. Cela est d'abord apparu syntaxiquement, à l'aide d'une découverte importante qui à été récompensée par le prix Church en 2024 : l’introduction du lambda calcul différentiel. Celui-ci est équipé d'un terme $sD M dot N$, et d'une substitution linaire correspondant. Une règle de bêta réduction est introduite, mais le calcul est fondamentalement non déterministe, ce qui s'exprime syntaxiquement par une "somme" de programmes.
@@ -193,8 +194,8 @@ espaces cohérents probabilistes, où les morphismes non linéaires sont
 manifestement infiniment différentiables et qui ne sont pas
 compatibles avec le non-déterminisme: deux éléments du même type ne
 sont pas sommables en général%
-\footnote{Par exemple la somme de deux distribution de probabilité sur
-  les entiers n'en est pas une.}.
+\footnote{Par exemple la somme de deux sous-distributions de probabilité sur
+  les entiers n'en est pas toujours une.}.
 
 La différentiation cohérente, introduite en 2021~\cite{Ehrhard23a},
 permet de résoudre cette contradiction apparente.
@@ -270,8 +271,9 @@ fin de la thèse car on ne se contentera pas d'un calcul des séquents,
 il faudra aussi développer des réseaux de preuve, comprendre comment
 $\PCF$ différentiel cohérent se traduit dans ces réseaux etc.
 
-Avant cela, en première année, on cherchera a mieux comprendre le lien
-entre la $\LL$ différentielle et la différentiation cohérente.
+Avant cela, en première année de thèse, on cherchera a mieux
+comprendre le lien entre la $\LL$ différentielle et la différentiation
+cohérente.
 %
 Pour ce faire, on étendra $\PCF$ cohérent différentiel avec la
 possibilité d'additionner librement les termes de même type.
@@ -284,7 +286,7 @@ Ce travail syntaxique sera mené en parallèle avec son analogue
 sémantique qui devrait être plus simple et mener à la conclusion que,
 dans un cadre de catégorie additive (où toutes les paires de
 morphismes du même type sont sommables), la différentiation cohérente
-devrait être équivalente à la différentiation ordinaire.
+est équivalente à la différentiation ordinaire.
 %
 On espère que cette analyse pourra suggérer des restrictions sur la
 $\LL$ différentielle qui reflètent la différentiation cohérente.
@@ -323,6 +325,9 @@ avec différentiation cohérente, vérification de preuves en Coq.
 On vise la publication d'un premier article en deuxième année,
 probablement sur les liens entre différentiation standard et
 différentiation cohérente.
+%
+On peut aussi espérer une publication en troisième année sur une $\LL$
+différentielle cohérente.
 
 
 \bibliographystyle{plain}
