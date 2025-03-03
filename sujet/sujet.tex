@@ -145,11 +145,28 @@ Ces extensions différentielles de la $\LL$ et du $\lambda$-calcul ont
 d'excellentes propriétés opérationnelles et dénotationnelles, et
 permettent notamment d'introduire une notion syntaxique de
 développement de Taylor~\cite{EhrhardRegnier06a} pour les $\lambda$-termes et
-les preuves qui s'est révélé être un outil puissant en théorie de la
-démonstration et dans l'étude des langages fonctionnels%
-\footnote{L'introduction de ces extensions dans les années 2000 ont
-  valu à Thomas Ehrhard et Laurent Regnier le prix Alonzo Church
-  2024.}.
+les preuves.
+
+Ce dernier s'est révélé être un outil puissant en théorie de la
+démonstration et dans l'étude des langages fonctionnels, car
+il permet de voir une preuve ou un programme comme une somme pondérée
+d’approximations multilinéaires, en un sens compatible avec la sémantique
+dénotationnelle mais aussi avec la dynamique du calcul.
+%
+En effet, ces approximations sont elles-mêmes munies d’une dynamique
+extrêmement régulière (notamment, leur taille décroit avec la réduction,
+qui est fortement confluente), et le développement de Taylor est compatible
+avec la normalisation~\cite{EhrhardRegnier06b}, et même avec la
+réduction~\cite{Vaux19}.
+%
+Dans de nombreuses situations, ceci permet de remplacer des raisonnements
+ad hoc sur les chemins de normalisation ou de réduction par une simple
+récurrence sur la taille des approximations.
+%
+\footnote{L'introduction des extensions différentielles et des techniques
+    associées dans les années 2000 ont valu à Thomas Ehrhard et Laurent Regnier
+    le prix Alonzo Church 2024.}.
+
 
 
 % La Logique Linéaire différentielle est une extension de la LL dans laquelle on peut extraire la meilleure approximation linéaire (en un sens opérationnel) d'une preuve ou d'un programme. Cela est d'abord apparu syntaxiquement, à l'aide d'une découverte importante qui à été récompensée par le prix Church en 2024 : l’introduction du lambda calcul différentiel. Celui-ci est équipé d'un terme $sD M dot N$, et d'une substitution linaire correspondant. Une règle de bêta réduction est introduite, mais le calcul est fondamentalement non déterministe, ce qui s'exprime syntaxiquement par une "somme" de programmes.
