@@ -1,0 +1,391 @@
+% !TeX spellcheck = en_US
+\documentclass[a4]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cmll}
+%\usepackage[bbgreekl]{mathbbol}
+\usepackage{bm}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usetikzlibrary{cd}
+\usepackage{pgfplots}
+\usepackage{stmaryrd}
+\usepackage{ebproof}
+\usepackage{url}
+
+\usepackage{varioref}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[french]{babel}
+
+\usepackage{todonotes}
+
+%\usepackage{theorem}
+
+\input{local}
+\input{mainnot}
+%\input{thpopl.tex}
+
+
+
+
+
+%opening
+\title{Sujet de thèse pour Léopold Brasseur:\\
+  Vers une logique linéaire différentielle cohérente}
+\author{Thomas Ehrhard \hspace{5em} Lionel Vaux}
+
+\begin{document}
+
+\maketitle
+
+\section*{Contexte}
+
+\subsection*{Logique linéaire}
+
+La Logique Linéaire~\cite{Girard87} ($\LL$) est née de l'étude
+dénotationnelle des preuves et des programmes.
+%
+C'est un raffinement de la logique intuitionniste (et de la logique
+classique) qui permet de parler de preuves qui sont linéaires au sens
+où elles utilisent exactement une fois, et complètement, leurs
+hypothèses.
+%
+Ainsi la $\LL$ introduit une implication linéaire $\Limpl AB$, et une
+preuve de cette formule est une preuve de $B$ qui dépend linéairement
+de $A$.
+%
+Cela est rendu possible par le statut logique explicite que la $\LL$
+donne aux règles structurelles d'affaiblissement et de contraction
+grâce à un connecteur unaire $\Oc A$, une modalité exponentielle.
+%
+Ainsi l'implication ordinaire $\Impl AB$ est représentée en $\LL$ par
+la formule $\Limpl{\Oc A}B$.
+
+Les modèles dénotationnels de la $\LL$ sont des catégories monoïdales
+sy\-mé\-tri\-ques fermées et cartésiennes équipées d'une comonade
+satisfaisant certaine propriétés de monoïdalité rendant compte du
+traitement explicite des règles structurelles.
+
+\subsection*{$\LL$ et $\lambda$-calcul différentiels}
+
+Ainsi les modèles de la $\LL$ sont tout à fait similaires aux
+catégories qui apparaissent en algèbre linéaire et en analyse
+fonctionnelle où les objets fondamentaux sont des espaces vectoriels
+de dimension possiblement infinie, et équipés en général d'une
+topologie.
+%
+En développant ce point de vue dans des modèles concrets de la $\LL$
+(espaces de Köthe~\cite{Ehrhard00c} et espaces de finitude~\cite{Ehrhard00b})
+il apparaît clairement que les morphismes non linéaires de ces modèles, qui
+sont des fonctions analytiques généralisées, admettent des dérivées de tous les
+ordres.
+%
+En retour, cette observation a mené à l'introduction du
+$\lambda$-calcul différentiel~\cite{EhrhardRegnier02} et de la $\LL$
+différentielle~\cite{EhrhardRegnier06d}.
+%
+Dans le $\lambda$-calcul différentiel, si $M$ est un terme de type
+$\Timpl AB$ et $N$ un terme de type $A$, alors on peut former le terme
+$\Diffapp MN$ de type $\Timpl AB$ qui représente la différentielle de
+$M$ à laquelle%
+\footnote{On rappelle que si $f:E\to F$ est une fonction assez
+  régulière entre des espaces vectoriels $E$ et $F$ (des Banach par
+  exemple) alors la différentielle $f'$ de $f$ est une fonction
+  $E\to\cL(E,F)$ où $\cL(E,F)$ est l'espace des fonctions linéaire de
+  $E$ vers $F$, donc $f'$ prend un argument non linéaire et un
+  argument linéaire; dans la notation adoptée en $\lambda$-calcul
+  différentiel, on donne l'argument linéaire d'abord, ce qui a
+  beaucoup d'avantages formels.} %
+on a donné son argument \emph{linéaire} $N$ et qui attend donc encore
+son argument non linéaire.
+%
+Ainsi apparaît dans le calcul un nouveau redex
+$\Diffapp{(\Abst xAM)}N$, et la règle de réécriture associée à ce
+redex reflète les règles habituelles du calcul différentiel: règle de
+Leibniz, règle de la chaîne etc.
+%
+Sans surprise, ces règles de réduction exigent de pouvoir écrire la
+somme de deux termes de même type.
+%
+Par exemple le terme
+$R=\Diffapp{(\Abst f{\Timpl AA}{\BL f\,(\RD f\,P)})}N$ où
+$N:\Timpl AA$ et $P:A$ se réduit en
+$$
+\Abst f{\Timpl AA}{N\,(\RD f\, P)}
++
+\Abst f{\Timpl AA}{(\Diffapp{\BL f}{(N\,P)})(\RD f\,P)}\,.
+$$
+Opérationnellement, cette somme signifie qu'il y a deux façons de
+remplacer \emph{exactement une} occurrence de $f$ par $N$ dans
+$f\,(f\, P)$: le premier terme de la somme correspond au premier choix
+où on substitue l'occurrence bleue de $f$, et le deuxième celle où on
+substitue l'occurrence rouge.
+%
+Cette deuxième substitution est un peu plus subtile: en effet
+l'occurrence bleue de $f$ dans $R$ pourrait utiliser $\RD f\,P$
+plusieurs fois, ou ne pas l'utiliser du tout, donc pour substituer
+linéairement dans $\RD f$, il faut d'abord faire en sorte que $\BL f$
+(dont on ne connaît pas encore la valeur) utilise son argument
+exactement une fois, c'est exactement pour cette raison qu'on utilise
+une application différentielle de $\BL f$ à $N\,P$, qui est $\RD f\,P$
+où $\RD f$ est substitué par $N$ exactement une fois.
+
+Ces opérations syntaxiques différentielles ont leur contrepartie en
+$\LL$, qui sont de nouvelles règles de déduction associées à
+l'exponentielle: de façon intéressante ces règles sont les duales des
+règles structurelles et étendent la $\LL$ ordinaire en un nouveau
+système: la $\LL$ différentielle.
+%
+Ces extensions différentielles de la $\LL$ et du $\lambda$-calcul ont
+d'excellentes propriétés opérationnelles et dénotationnelles, et
+permettent notamment d'introduire une notion syntaxique de
+développement de Taylor~\cite{EhrhardRegnier06a} pour les $\lambda$-termes et
+les preuves.
+
+Ce dernier s'est révélé être un outil puissant en théorie de la
+démonstration et dans l'étude des langages fonctionnels, car
+il permet de voir une preuve ou un programme comme une somme pondérée
+d’approximations multilinéaires, en un sens compatible avec la sémantique
+dénotationnelle mais aussi avec la dynamique du calcul.
+%
+En effet, ces approximations sont elles-mêmes munies d’une dynamique
+extrêmement régulière (notamment, leur taille décroit avec la réduction,
+qui est fortement confluente), et le développement de Taylor est compatible
+avec la normalisation~\cite{EhrhardRegnier06b}, et même avec la
+réduction~\cite{Vaux19}.
+%
+Dans de nombreuses situations, ceci permet de remplacer des raisonnements
+ad hoc sur les chemins de normalisation ou de réduction par une simple
+récurrence sur la taille des approximations.
+%
+\footnote{L'introduction des extensions différentielles et des techniques
+    associées dans les années 2000 ont valu à Thomas Ehrhard et Laurent Regnier
+    le prix Alonzo Church 2024.}.
+
+
+
+% La Logique Linéaire différentielle est une extension de la LL dans laquelle on peut extraire la meilleure approximation linéaire (en un sens opérationnel) d'une preuve ou d'un programme. Cela est d'abord apparu syntaxiquement, à l'aide d'une découverte importante qui à été récompensée par le prix Church en 2024 : l’introduction du lambda calcul différentiel. Celui-ci est équipé d'un terme $sD M dot N$, et d'une substitution linaire correspondant. Une règle de bêta réduction est introduite, mais le calcul est fondamentalement non déterministe, ce qui s'exprime syntaxiquement par une "somme" de programmes.
+% $ sD (lambda x . M) dot N arrow_(beta_"d") pdiff(M,x,N) #h(1cm) pdiff((P)Q,x,N) = (pdiff(P,x,N))Q + (sD P dot (pdiff(Q,x,N)))Q $
+% Un exemple de langage de programmation différentiel simple ($PCFd$) est donné en @pcfsyntax.
+
+% #figure([
+%   #box(width: 49%, height: 4cm, baseline: 100%, fill: silver, radius: (rest: 7pt), outset: (y: 4pt), align(horizon)[
+%     Syntaxe de $PCFd$ : #linebreak() #v(0pt)
+%     $ M,N,P ::= &x | (M)N | lambda x.M 
+%     \ | &underline(n) | succ(M) | pred(M)
+%     \ | &tif(P,M,N) | tlet(x,M,N)
+%     \ | &sD M dot N | M + N | 0$ 
+%   ])
+%   #h(1%)
+%   #box(width: 49%, height: 4cm, baseline: 100%, fill: silver, radius: (rest: 7pt), outset: (y: 4pt), [
+%     Syntaxe de $PCFcd$ : #linebreak() #v(0pt)
+%     $ M ::= &x | (M)N | lambda x.M 
+%     \ | &underline(n) | succ^d (M) | pred^d (M)
+%     \ | &tif^d (P,M,N) | tlet^d (x,M,N)
+%     \ | &sD M | iota^d_i (M) | pi^d_i (M) 
+%     \ | &theta^d (M) | sc^d_l (M)$
+%   ])],
+%   placement: auto,
+%   caption: [syntaxes de $PCFd$ et $PCFcd$]
+% ) <pcfsyntax>
+
+
+
+% TODO : paragraphes sur les modèles de LLdiff ?
+
+\section*{Programme de recherche}
+
+\subsection*{Différentiation cohérente}
+Malgré leurs bonnes propriétés, ces extensions différentielles
+présentent une caractéristique que l'on peut considérer comme un
+défaut: opérationnellement, la seule façon d'interpréter les sommes
+---~qui y apparaissent nécessairement comme on l'a vu~--- est de les
+voir comme des choix non-déterministes.
+
+Or cette forme de non-déterminisme est incompatible avec la récursion gé\-né\-ra\-le,
+c’est-à-dire la possibilité de représenter toutes les fonctions calculables au
+sens de la thèse de Church--Turing.
+%
+En $\lambda$-calcul la récursion générale revient à l’existence de points fixes
+de termes, obtenus implicitement dans le cas non typé, ou par l’ajout explicite
+de constructeurs de points fixes dans le cas typé, comme dans le langage $\PCF$
+de Scott et Plotkin.
+%
+Et même s’il est toujours possible de maintenir certaines propriétés
+opérationnelles (notamment la confluence du calcul~\cite{Vaux09}),
+l’interaction sans contrainte entre points fixes et sommes de termes n’a pas de
+fondement dénotationnel car elle produit des sommes infinies divergentes.
+
+Par ailleurs, on ne voit aucune raison \emph{a priori} pour laquelle la
+différentiation devrait nécessairement entraîner le non-déterminisme.
+%
+Et ce d'autant plus qu'il existe des modèles de la $\LL$, comme les
+espaces cohérents probabilistes~\cite{DanosEhrhard08}, où les morphismes non
+linéaires sont manifestement infiniment différentiables et qui ne sont pas
+compatibles avec le non-déterminisme: deux éléments du même type ne
+sont pas sommables en général%
+\footnote{Par exemple la somme de deux sous-distributions de probabilité sur
+  les entiers n'en est pas toujours une.}.
+
+La différentiation cohérente, introduite en 2021~\cite{Ehrhard23a},
+permet de résoudre cette contradiction apparente.
+%
+L'idée principale est de donner un statut catégorique clair à la
+sommabilité en considérant un modèle catégorique $\cL$ de la $\LL$
+muni d'un foncteur $\Sfun:\cL\to\cL$ qui envoie intuitivement tout
+objet $X$ de $\cL$ sur l'objet $\Sfun X$ des paires sommables
+d'éléments de $X$.
+%
+Dans ce contexte, la structure différentielle devient une loi
+distributive entre $\Sfun$ et l'exponentielle $\Oc\_$ satisfaisant
+certaines propriétés supplémentaires.
+%
+Le travail de thèse d'Aymeric~Walch, commencé en 2022, a montré qu'en
+remplaçant ``paires sommables'' par ``familles sommables indexées par
+les entiers'', on rend compte dans le même formalisme de tout le
+développement de Taylor et de la formule de Faà di
+Bruno~\cite{EhrhardWalch23b}.
+
+Il a aussi été possible de développer une version syntaxique de la
+diffé\-ren\-tia\-tion cohérente, qui se présente comme une extension du
+$\PCF$ de Scott et Plotkin.
+%
+Une propriété remarquable de ce langage est qu'il admet une sémantique
+opérationnelle parfaitement déterministe que l'on peut décrire au
+moyen d'une machine abstraite à la Krivine~\cite{Ehrhard23b}.
+%
+Cette approche syntaxique se généralise de façon étonamment simple à
+la version cohérente du développement de Taylor développée
+dans~\cite{EhrhardWalch23b}, menant à un ``$\PCF$ de Taylor
+cohérent''.
+
+Qui plus est, on a pu constater que la plupart des modèles connus de
+la $\LL$ sont aussi des modèles de la différentiation cohérente (et du
+développement de Taylor cohérent).
+%
+La structure différentielle de tous ces modèles admet une description
+très simple qui se réduit à constater que l'objet $\With\Sone\Sone$ a
+une structure de $\oc$-coalgèbre: on dit que cette structure est
+\emph{représentable}.
+%
+Et de même le développement de Taylor cohérent se ramène, dans ces
+modèles, à une structure de $\oc$-coalgèbre sur
+$\Sone\IWith\Sone\IWith\cdots$.
+
+\subsection*{Objectifs et déroulement de la thèse}
+Pour l'instant, on ne sait pas voir la différentiation cohérente comme
+un système logique: elle se présente comme un formalisme purement
+catégorique.
+%
+La version différentielle cohérente de $\PCF$ évoquée ci-dessus ne
+peut pas être considérée comme un système logique, c'est
+essentiellement un $\lambda$-calcul étendu de façon \emph{ad hoc} avec
+des constructions syntaxiques qui reflètent directement les structures
+catégoriques des modèles de la différentiation cohérente.
+
+Le but principal de cette thèse sera de répondre à cette
+problématique, en essayant notamment de profiter de l'existence de
+structures différentielles cohérentes dans de nombreux modèles de
+$\LL$.
+%
+En effet, la $\LL$ donne un statut très clair aux polarités logiques:
+les formules positives de la $\LL$ sont interprétées dans les modèles
+par des $\oc$-coalgèbres.
+%
+Or on a vu que les modèles représentables de la différentiation
+cohérente sont justement caractérisés par l'existence d'une
+$\oc$-coalgèbre particulière.
+%
+Une direction naturelle sera donc de chercher à développer un système
+cohérent différentiel dans un cadre de $\LL$ polarisée.
+%
+On pense pouvoir attaquer cette partie du programme de recherche en
+fin de première année de thèse et elle devrait nous occuper jusqu'à la
+fin de la thèse car on ne se contentera pas d'un calcul des séquents,
+il faudra aussi développer des réseaux de preuve, comprendre comment
+$\PCF$ différentiel cohérent se traduit dans ces réseaux, etc.
+
+Avant cela, en première année de thèse, on cherchera a mieux
+comprendre le lien entre la $\LL$ différentielle et la différentiation
+cohérente.
+%
+Pour ce faire, on étendra $\PCF$ cohérent différentiel avec la
+possibilité d'additionner librement les termes de même type.
+%
+On montrera que le $\lambda$-calcul différentiel peut être plongé dans
+cette extension de $\PCF$ ce qui permettra de mieux comprendre le lien
+entre les opérations différentielles des deux formalismes.
+%
+Ce travail syntaxique sera mené en parallèle avec son analogue
+sémantique qui devrait être plus simple et mener à la conclusion que,
+dans un cadre de catégorie additive (où toutes les paires de
+morphismes du même type sont sommables), la différentiation cohérente
+est équivalente à la différentiation ordinaire.
+%
+On espère que cette analyse pourra suggérer des restrictions sur la
+$\LL$ différentielle qui reflètent la différentiation cohérente.
+%
+En cas de succès dans cette entreprise, on la généralisera au $\PCF$
+Taylor cohérent mentionné ci-dessus.
+
+La première année sera aussi consacrée à un important travail
+bibliographique autour de la théorie de la démonstration de la $\LL$:
+calcul des séquents et réseaux de preuves, et notamment des systèmes
+polarisés. 
+
+% Un autre intérêt majeur de la différentiation cohérente par rapport au
+% $\lambda$-calcul différentiel est sa compatibilité avec la récursion
+% générale (rappeleons que le langage $\PCF$, que nous avons étendu avec
+% la différentiation cohérente, est un langage de programmation
+% Turing-complet, muni d'un opérateur de points fixes qui permet toutes
+% les définitions récursives).
+% %
+% Cela suggère de 
+
+Si le temps le permet en fin de thèse, on espère ouvrir des
+perspectives en utilisant le cadre différentiel cohérent pour
+reformuler des méthodes d'optimisation existantes ou en développer de
+nouvelles, dans un cadre de programmation probabiliste.
+%
+En effet, un des modèles les plus naturels de la différentiation
+cohérente est celui des espaces cohérents probabilistes dans lequel
+les extensions probabilistes de PCF peuvent être interprétées.
+
+Il s'agira d'une thèse de nature essentiellement théorique, qui pourra
+aussi comporter des aspects de programmation: implémentation de
+machines abstraites pour les langages de programmation fonctionnelle
+avec différentiation cohérente, vérification de preuves en Coq.
+
+On vise la publication d'un premier article en deuxième année,
+probablement sur les liens entre différentiation standard et
+différentiation cohérente.
+%
+On peut aussi espérer une publication en troisième année sur une $\LL$
+différentielle cohérente.
+
+\section{Encadrement de la thèse}
+
+La thèse sera dirigée par Thomas Ehrhard (DR CNRS à l’IRIF, Paris
+Cité) et co-encadrée par Lionel Vaux Auclair (maître de conférences HDR à
+l’I2M, Aix-Marseille).
+
+Ehrhard est le co-inventeur avec Regnier du $\lambda$-calcul et de la $\LL$
+différentiels, et a initié et conduit le programme de la différentiation
+cohérente, dont le prolongement constitue l’axe central du projet de thèse.
+Vaux Auclair a contribué à développer l’écosystème du développement de Taylor
+des programmes et des preuves (avec une expertise sur ses interactions avec le
+non-déterminisme, sa compatibilité avec les calculs infinitaires, 
+ou encore avec les réseaux de preuves) et il a en particulier étudié une
+version polarisée de la logique linéaire diffé\-ren\-tielle~\cite{Vaux09a}.
+
+La thèse se déroulera à Paris à l’IRIF, avec des visites régulières de Vaux
+Auclair à Paris, et de Brasseur et Ehrhard à Marseille.
+
+\bibliographystyle{plain}
+\bibliography{newbiblio.bib}
+\end{document}
