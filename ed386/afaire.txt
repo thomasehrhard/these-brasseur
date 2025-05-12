@@ -1,1 +1,6 @@
 dossier ED
+
+- sujet de thèse inchangé
+- CV / Lettre motiv / Notes M2
+- Lettres recom encadrants
+- (Ajouter lettres recom extés ?)
