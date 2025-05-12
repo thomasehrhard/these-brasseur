@@ -1,1 +1,7 @@
-dossier CFM
+dossier CFM :
+
+- Cursus / CV / Notes M2 / Lettre de motiv
+- lettres reco encadrants
+- CV des encadrants
+- Lettre reco d'un enseignant de M2 (Je peux peut-être demander à Christine / Guillaume Baudart / Un des profs de logique (Gabriel Scherrer ?) / Ou a Paul-André ?)
+- résumé de la thèse en 200 mots
