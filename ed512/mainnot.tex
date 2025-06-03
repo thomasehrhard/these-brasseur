@@ -1,0 +1,1972 @@
+
+% Setup double \llangle and \rrangle
+\makeatletter
+\DeclareFontFamily{OMX}{MnSymbolE}{}
+\DeclareSymbolFont{MnLargeSymbols}{OMX}{MnSymbolE}{m}{n}
+\SetSymbolFont{MnLargeSymbols}{bold}{OMX}{MnSymbolE}{b}{n}
+\DeclareFontShape{OMX}{MnSymbolE}{m}{n}{
+    <-6>  MnSymbolE5
+   <6-7>  MnSymbolE6
+   <7-8>  MnSymbolE7
+   <8-9>  MnSymbolE8
+   <9-10> MnSymbolE9
+  <10-12> MnSymbolE10
+  <12->   MnSymbolE12
+}{}
+\DeclareFontShape{OMX}{MnSymbolE}{b}{n}{
+    <-6>  MnSymbolE-Bold5
+   <6-7>  MnSymbolE-Bold6
+   <7-8>  MnSymbolE-Bold7
+   <8-9>  MnSymbolE-Bold8
+   <9-10> MnSymbolE-Bold9
+  <10-12> MnSymbolE-Bold10
+  <12->   MnSymbolE-Bold12
+}{}
+
+\let\llangle\@undefined
+\let\rrangle\@undefined
+\DeclareMathDelimiter{\llangle}{\mathopen}%
+                     {MnLargeSymbols}{'164}{MnLargeSymbols}{'164}
+\DeclareMathDelimiter{\rrangle}{\mathclose}%
+                     {MnLargeSymbols}{'171}{MnLargeSymbols}{'171}
+\makeatother
+
+\makeatletter
+\newcommand{\labeltext}[2]{%
+  \@bsphack
+  \csname phantomsection\endcsname % in case hyperref is used
+  \def\@currentlabel{#1}{\label{#2}}%
+  \@esphack
+}
+\makeatother
+
+
+
+\newcommand\Redparagraph[1]{\paragraph{#1~:}}
+\newcounter{examplectr}
+
+\newenvironment{Example}{%
+   \bigbreak\noindent%
+   \refstepcounter{examplectr}%
+   \textbf{$\blacktriangleright$\ Example \theexamplectr.\ }%
+   }{\ \hfill$\blacktriangleleft$\par\bigbreak}
+\numberwithin{examplectr}{section}
+
+
+\makeatletter
+\newcommand*{\inlineeq}[2][]{%
+  \begingroup
+    % Put \refstepcounter at the beginning, because
+    % package `hyperref' sets the anchor here.
+    \refstepcounter{equation}%
+    \ifx\\#1\\%
+    \else
+      \label{#1}%
+    \fi
+    % prevent line breaks inside equation
+    \relpenalty=10000 %
+    \binoppenalty=10000 %
+    \ensuremath{%
+      % \displaystyle % larger fractions, ...
+      #2%
+    }%
+    ~\@eqnnum
+  \endgroup
+}
+\makeatother
+
+\theoremstyle{definition}
+%\newtheorem{example}{Example}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{theorem}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+
+\newenvironment{Axicond}[1]
+{\smallbreak\noindent{#1}\,}
+{\smallbreak}
+
+% \let\oldequation\equation
+% \let\oldendequation\endequation
+
+% \renewenvironment{equation}
+%   {\linenomathNonumbers\oldequation}
+%   {\oldendequation\endlinenomath}
+
+% \renewenvironment{align*}
+%   {\begin{linenomath}\begin{align*}}
+%   {\end{align*}\end{linenomath}}
+
+\newcommand\Insbreak{\bigbreak\bigbreak\bigbreak\bigbreak\bigbreak\bigbreak
+\noindent\hrule
+\bigbreak\noindent\hrule
+\bigbreak}
+
+
+\newcommand{\qqbox}[1]{\quad\hbox{{#1}}\quad}
+\newcommand{\qbox}[1]{\quad\hbox{{#1}}}
+\newcommand{\bbbox}[1]{\ \hbox{{#1}}\ }
+\newcommand{\bbox}[1]{\ \hbox{{#1}}}
+
+% \newtheorem*{lemma*}{Lemma}
+% \newtheorem*{proposition*}{Proposition}
+% \newtheorem*{remark*}{Remark}
+
+
+% \makeatletter%
+% \renewcommand\subsubsection{%
+% \@startsection{subsubsection}{3}{0mm}{\baselineskip}{-1em}%
+% {\normalfont\bfseries}}
+% \makeatother
+% \renewcommand\paragraph{\subsubsection}
+
+
+\newcommand\rulename[1]{\smallbreak\noindent\textbf{#1}:}
+
+\newcommand\Proofbreak{\smallbreak}
+
+\newcommand\Proofcase{\smallbreak\noindent$\blacktriangleright$\ }
+
+\def\bull{\vrule height.9ex width.8ex depth-.1ex}
+
+\newcommand{\proofitem}[1]{\paragraph*{\mdseries\textit{#1}}}
+
+\newcommand{\Beginproof}{\proofitem{Proof.}}
+\newcommand{\Endproof}{
+  \ifmmode % if math mode, assume display: omit penalty etc.
+  \else \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+  \fi
+  \quad\hbox{$\Box$}
+  \par\medskip}
+
+\newcommand\Condl[1]{\label{cond:#1}}
+\newcommand\Condr[1]{(\ref{cond:#1})}
+
+\newcommand\Eqref[1]{(\ref{#1})}
+
+\newcommand\Eg{\textsl{e.g.}}
+
+
+% \newenvironment{remark}%
+% {\smallbreak\noindent{\textit{Remark\/}: }\nobreak}%
+% {\smallbreak}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand\epsilon{\varepsilon}
+\renewcommand\sharp{\#}
+
+\newcommand{\Iff}{\quad\hbox{iff}\quad}
+\newcommand{\Ifsimple}{\quad\hbox{if}\quad}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Implsymbol}{\Rightarrow}
+\newcommand\Equiv{\Leftrightarrow}
+\newcommand{\St}{\mid}
+
+\newcommand{\Ro}{\circ}
+\newcommand{\Inf}{\bigwedge}
+\newcommand{\Infi}{\wedge}
+\newcommand{\Sup}{\bigvee}
+\newcommand{\Supi}{\vee}
+
+%\newcommand{\Filled}[1]{\Myleft|{#1}\Myright|}
+
+\newcommand{\arrow}{\rightarrow}
+\newcommand{\Bott}{{\mathord{\perp}}}
+\newcommand{\Sbot}{{\mathord{\perp}}}
+\newcommand{\Top}{\top}
+%\newcommand{\Zero}{0}
+
+\newcommand\Seqempty{\Tuple{}}
+
+\newcommand\cA{\mathcal{A}}
+\newcommand\cB{\mathcal{B}}
+\newcommand\cC{\mathcal{C}}
+\newcommand\cD{\mathcal{D}}
+\newcommand\cE{\mathcal{E}}
+\newcommand\cF{\mathcal{F}}
+\newcommand\cG{\mathcal{G}}
+\newcommand\cH{\mathcal{H}}
+\newcommand\cI{\mathcal{I}}
+\newcommand\cJ{\mathcal{J}}
+\newcommand\cK{\mathcal{K}}
+\newcommand\cL{\mathcal{L}}
+\newcommand\cM{\mathcal{M}}
+\newcommand\cN{\mathcal{N}}
+\newcommand\cO{\mathcal{O}}
+\newcommand\cP{\mathcal{P}}
+\newcommand\cQ{\mathcal{Q}}
+\newcommand\cR{\mathcal{R}}
+\newcommand\cS{\mathcal{S}}
+\newcommand\cT{\mathcal{T}}
+\newcommand\cU{\mathcal{U}}
+\newcommand\cV{\mathcal{V}}
+\newcommand\cW{\mathcal{W}}
+\newcommand\cX{\mathcal{X}}
+\newcommand\cY{\mathcal{Y}}
+\newcommand\cZ{\mathcal{Z}}
+
+\newcommand\Fini{{\mathrm{fin}}}
+
+
+
+\def\frownsmile{%
+\mathrel{\vbox{\hbox{${\frown}$}\vspace{-2ex}\hbox{${\smile}$}\vspace{-.5ex}}}}
+\def\smilefrown{%
+\mathrel{\vbox{\hbox{${\smile}$}\vspace{-2ex}\hbox{${\frown}$}\vspace{-.5ex}}}}
+
+\newcommand\Part[1]{{\mathcal P}\left({#1}\right)}
+\newcommand\Parti[1]{{\mathcal I}({#1})}
+
+\newcommand\Union{\bigcup}
+
+\newcommand{\Linarrow}{\multimap}
+
+\def\frownsmile{%
+\mathrel{\vbox{\hbox{${\frown}$}\vspace{-2ex}\hbox{${\smile}$}\vspace{-.5ex}}}}
+\def\smilefrown{%
+\mathrel{\vbox{\hbox{${\smile}$}\vspace{-2ex}\hbox{${\frown}$}\vspace{-.5ex}}}}
+
+\newcommand\CScoh[3]{{#2}\mathrel{\frownsmile_{{#1}}}{#3}}
+\newcommand\CScohs[3]{{#2}\mathrel{{\frown}_{#1}}{#3}}
+\newcommand\CScohstr[3]{\CScohs{#1}{#2}{#3}}
+\newcommand\CSincoh[3]{{#2}\mathrel{\smilefrown_{{#1}}}{#3}}
+\newcommand\CSincohs[3]{{#2}\mathrel{{\smile}_{#1}}{#3}}
+\newcommand\CSeq[3]{{#2}\mathrel{{=}_{#1}}{#3}}
+
+\newcommand\Myleft{}
+\newcommand\Myright{}
+
+\newcommand\Web[1]{\Myleft|{#1}\Myright|}
+%\newcommand\Supp[1]{\Myleft|{#1}\Myright|}
+\newcommand\Suppsymb{\operatorname{\mathsf{supp}}}
+\newcommand\Supp[1]{\operatorname{\mathsf{supp}}({#1})}
+\newcommand\Suppms[1]{\operatorname{\mathsf{set}}({#1})}
+%\newcommand\Suppms[1]{\underline{#1}}
+
+\newcommand\Emptymset{[\,]}
+\newcommand\Mset[1]{[{#1}]}
+%\newcommand\Sset[1]{\langle{#1}\rangle}
+\newcommand\Sset[1]{({#1})}
+
+
+\newcommand\MonP{P}
+\newcommand\MonPZ{\MonP_0}
+
+\newcommand\Cl[1]{\mbox{\textrm{Cl}}({#1})}
+\newcommand\ClP[1]{\mbox{\textrm{Cl}}_{\MonP}({#1})}
+
+\newcommand\Star{\star}
+\newcommand\CohName{\mathbf{Coh}}
+\newcommand\NCohName{\mathbf{NCoh}}
+\newcommand\COH{\CohName}
+\newcommand\NCOH{\NCohName}
+\newcommand\COHR[2]{\CohName(#1,#2)}
+
+\newcommand\Par[2]{{#1}\mathrel{\IPar}{#2}}
+\newcommand\Parp[2]{\left({#1}\mathrel{\IPar}{#2}\right)}
+\newcommand\ITens{\mathrel\otimes}
+\newcommand\Tens[2]{{#1}\ITens{#2}}
+\newcommand\Comma[2]{{#1},{#2}}
+\newcommand\Tensp[2]{({#1}\ITens{#2})}
+\newcommand\IWith{\mathrel{\&}}
+\newcommand\With[2]{{#1}\IWith{#2}}
+\newcommand\Withe[2]{{#1}\IWith^\Klsymb{#2}}
+\newcommand\Withep[2]{\left({#1}\IWith^\Klsymb{#2}\right)}
+\newcommand\Withp[2]{\left({#1}\IWith{#2}\right)}
+\newcommand\IPlus{\oplus}
+\newcommand\Plus[2]{{#1}\IPlus{#2}}
+%\newcommand\ILfun{\multimap}
+%\newcommand\Lfun[2]{{#1}\ILfun{#2}}
+\newcommand\Orth[2][]{#2^{\mathord\perp_{#1}}}
+\newcommand\Orthp[2][]{(#2)^{\Bot_{#1}}}
+
+\newcommand\Klsymb{\mathsf K}
+
+\newcommand\Bwith{\mathop{\&}}
+\newcommand\Bwithe{\mathop{\&^{\Klsymb}}}
+\newcommand\Bplus{\mathop\oplus}
+\newcommand\Bunion{\mathop\cup}
+
+\newcommand\Scal[2]{\langle{#1}\mid{#2}\rangle}
+
+%\newcommand\App[2]{{#1}[{#2}]}
+
+\newcommand\Pair[2]{\langle{#1},{#2}\rangle}
+
+%\newcommand\Inj{\lambda}
+\newcommand\Inj[1]{\overline\pi_{#1}}
+
+\newcommand\GlobalIndex{I}
+\newcommand\Index{\GlobalIndex}
+\newcommand\Relbot{\Bot_\Index}
+%\newcommand\Relbot{\Bot}
+\newcommand\MonPZI{{\MonPZ}^\Index}
+\newcommand\ClPI[1]{{\ClP{{#1}}}^\Index}
+\newcommand\WebI[1]{\Web{#1}^\Index}
+
+
+%\newcommand\Bar{\vec}
+%\renewcommand\Bar{}
+\newcommand\Scalb[2]{\Scal{\Bar{#1}}{\Bar{#2}}}
+
+\newcommand\Ortho[2]{{#1}\mathrel{\bot}{#2}}
+\newcommand\Orthob[2]{\Bar{#1}\mathrel{\bot}\Bar{#2}}
+
+\newcommand\Biorth[1]{#1^{\bot\bot}}
+\newcommand\Biorthp[3]{{#1}^{\Bot_{#2}\Bot_{#3}}}
+\newcommand\Triorth[1]{{#1}^{\bot\bot\bot}}
+\newcommand\Triorthp[4]{{#1}^{\Bot_{#2}\Bot_{#3}\Bot_{#4}}}
+
+\newcommand\Relpretens[2]{\cR_{#1}\bar\ITens\cR_{#2}}
+\newcommand\Relpreplus[2]{\cR_{#1}\bar\IPlus\cR_{#2}}
+
+%\newcommand\Rel[1]{\cR_{#1}}
+
+\newcommand\RelP[1]{\widetilde{#1}}
+
+\newcommand\Eqw[2]{\delta({#1},{#2})}
+\newcommand\Eqwb[2]{\Eqw{\Bar{#1}}{\Bar{#2}}}
+
+\newcommand\PFacts[1]{\cF({#1})}
+%\newcommand\Facts{\cF(\MonPZI)}
+
+\newcommand\Facts{\cF(\MonPZI)}
+
+
+\newcommand\RelL[1]{\overline{#1}}
+
+\newcommand\PRel[1]{R_{#1}}
+
+\newcommand\PFamb[2]{[\Bar{#1},\Bar{#2}]}
+
+\newcommand\Fplus[2]{\Bar{#1}+\Bar{#2}}
+
+\newcommand\Char[1]{\epsilon_{#1}}
+
+\newcommand\Fproj[2]{\pi_{#1}(\Bar{#2})}
+
+\newcommand\One{1}
+
+
+\newcommand\Pbot[1]{\Bot_{#1}}
+\newcommand\PBot[1]{\Bot_{#1}}
+\newcommand\PRBot[1]{\Bot_{#1}}
+\newcommand\PROne[1]{1_{#1}}
+
+\newcommand\Pproj[1]{\pi_{#1}}
+
+\newcommand\Zext[1]{\zeta_{\Bar{#1}}}
+\newcommand\Aext[1]{\bar\zeta_{\Bar{#1}}}
+
+\newcommand\Mall{\hbox{\textsf{MALL}}}
+\newcommand\RMall{\Mall(\Index)}
+\newcommand\RMallr[1]{\Mall({#1})}
+\newcommand\FDom[1]{d({#1})}
+
+% constantes relativisees
+\newcommand\RBot[1]{\Bot_{#1}}
+\newcommand\ROne[1]{\One_{#1}}
+
+% sequent
+\newcommand\Seq[1]{\vdash{#1}}
+
+% sequent relativise a un ensemble
+\newcommand\RSeq[2]{\vdash_{#1}{#2}}
+
+% restriction d'une formule de MALL(J)
+\newcommand\Restr[2]{{#1}|_{#2}}
+\newcommand\FRestr[2]{{#1}|_{#2}}
+
+% semantique d'une formule et d'une preuve
+\newcommand\FSem[1]{{#1}^{*}}
+\newcommand\PSem[1]{{#1}^{*}}
+
+% formule de MALL(J) associee a une famille de points de la trame
+\newcommand\FFamb[2]{{#1}\langle\Bar{#2}\rangle}
+
+\newcommand\Premskip{\hskip1cm}
+%\newcommand\Forg[1]{\FRestr{#1}\emptyset}
+\newcommand\Forg[1]{\underline{#1}}
+
+\newcommand\Phase[1]{{#1}^\bullet}
+
+\newcommand\Punit[1]{1^{#1}}
+
+\newcommand\Reg[1]{R_{#1}}
+
+\newcommand\Cont[1]{{#1}^\circ}
+
+\newcommand\Neutral{e}
+\newcommand\RNeutral[1]{\Neutral_{#1}}
+
+\newcommand\POne{1}
+
+\newcommand\relstack[2]{\underset{#2}{#1}}
+\newcommand\RPlus[4]{{#3}\relstack\IPlus{{#1},{#2}}{#4}}
+\newcommand\RWith[4]{{#3}\relstack\IWith{{#1},{#2}}{#4}}
+
+\newcommand\PReq[1]{=_{#1}}
+
+\newcommand\Fam[2]{\hbox{\textrm{Fam}}_{#1}(#2)}
+\newcommand\Famfunc[1]{\hbox{\textrm{Fam}}_{#1}}
+
+\newcommand\Pval[1]{\rho_{#1}}
+
+\newcommand\Fcoh{\mathsf C}
+\newcommand\Fincoh{\overline\Fcoh}
+\newcommand\Feq{\mathsf E}
+
+\newcommand\RZero{\Zero}
+\newcommand\RTop{\Top}
+\newcommand\EmptyFam{\emptyset}
+\newcommand\Partial[1]{\Omega_{#1}}
+
+\newcommand\PMall{\hbox{\textsf{MALL}}_\Omega}
+\newcommand\PRMall{\Mall_\Omega(\Index)}
+\newcommand\Homo[1]{H(#1)}
+\newcommand\RProd[2]{\Lambda_{#1}{({#2})}}
+\newcommand\FProd[1]{\widetilde{#1}}
+
+\newcommand\CltoPCl[1]{{#1}^P}
+
+\newcommand\Partfin[1]{{\cP_\Fini}({#1})}
+
+
+
+\newcommand\RLL{\LL(\Index)}
+\newcommand\RLLP{\LL^+(\Index)}
+\newcommand\RLLext{\LL^\mathrm{ext}(\Index)}
+
+\newcommand\IExcl{{\mathord{!}}}
+\newcommand\IInt{{\mathord{?}}}
+
+\newcommand\RExcl[1]{\IExcl_{#1}}
+\newcommand\RInt[1]{\IInt_{#1}}
+
+
+\newcommand\Fempty[1]{0_{#1}}
+
+\newcommand\FAct[1]{{#1}_*}
+
+\newcommand\Noindex[1]{\langle{#1}\rangle}
+
+\newcommand\Card[1]{\#{#1}}
+\newcommand\Multi[1]{\mathsf m({#1})}
+
+\newcommand\FamRestr[2]{{#1}|_{#2}}
+
+\newcommand\Pact[1]{{#1}_*}
+
+\newcommand\Pinj[1]{\zeta_{#1}}
+
+\newcommand\Locun[1]{1^J}
+
+\newcommand\Isom\simeq
+\newcommand\Webisom{\simeq_{\mathsf w}}
+
+\newcommand\FGraph[1]{\mathsf{g}({#1})}
+\newcommand\GPFact[1]{\mathsf f_0({#1})}
+\newcommand\GFact[1]{\mathsf f({#1})}
+
+% \newcommand\NUCS{non-uniform coherence space}
+% \newcommand\NUCSb{non-uniform coherence space }
+% \newcommand\NUCSs{non-uniform coherence spaces}
+% \newcommand\NUCSsb{non-uniform coherence spaces }
+\newcommand\NUCS{\mathbf{nCoh}}
+
+\newcommand\Comp{\mathrel\circ}
+
+\newcommand\Funinv[1]{{#1}^{-1}}
+
+\newcommand\Reindex[1]{{#1}^*}
+
+\newcommand\Locbot[1]{\Bot({#1})}
+\newcommand\Locone[1]{1({#1})}
+\newcommand\LocBot{\Locbot}
+\newcommand\LocOne{\Locone}
+
+\newcommand\INJ[1]{\mathcal I({#1})}
+\newcommand\COHP[1]{\mathcal C({#1})}
+\newcommand\FuncFam[1]{\mathrm{Fam}_{#1}}
+\newcommand\SET{\mathbf{Set}}
+\newcommand\PSET{\mathbf{Set}_0}
+\newcommand\Locmod[2]{{#1}({#2})}
+\newcommand\FuncPhase[1]{\mathcal{F}_{#1}}
+\newcommand\Trans[2][]{{\widehat{#2}}_{#1}}
+\newcommand\Useful[1]{\Web{#1}_{\mathrm u}}
+
+\newcommand\Limpl[2]{{#1}\Linarrow{#2}}
+\newcommand\Limplp[2]{\left({#1}\Linarrow{#2}\right)}
+
+\newcommand\ConstFam[2]{{#1}^{#2}}
+
+\newcommand\Projtr[1]{{\mathsf{pr}}^{#1}}
+\newcommand\Injtr[1]{{\mathsf{in}}^{#1}}
+
+\newcommand\Center[1]{\mathcal C({#1})}
+
+\newcommand\Derel[1]{\mathrm{d}_{#1}}
+
+\newcommand\Mspace[2]{{#2}^*_{#1}}
+
+\newcommand\CStoMS[1]{{#1}^+}
+\newcommand\MStoCS[1]{{#1}^-}
+
+\newcommand\PhaseCoh[1]{{\mathbf{Coh}}_{#1}}
+
+\newcommand\Nat{{\mathbb{N}}}
+\newcommand\Relint{{\mathbb{Z}}}
+\newcommand\Natnz{{\Nat^+}}
+
+\newcommand\Rien{\Omega}
+
+\newcommand\DenEq[2]{{#1}\sim{#2}}
+
+\newcommand\VMon[2]{\langle{#1},{#2}\rangle}
+\newcommand\VMonc[3]{\langle{#1},{#2},{#3}\rangle}
+
+%\newcommand\Multind[1]{\begin{substack}#1\end{substack}}
+%\newcommand\Biind[2]{\scriptstyle{#1}\atop\scriptstyle{#2}}
+\newcommand\Biind[2]{\genfrac{}{}{0pt}{1}{#1}{#2}}
+
+\newcommand\Adapt[1]{\cA_{#1}}
+
+\newcommand\Rllp[1]{\widetilde{#1}}
+
+\newcommand\Emptyfun[1]{0_{#1}}
+
+\newcommand\Multisetfin[1]{\mathcal{M}_{\mathrm{fin}}({#1})}
+
+\newcommand\Myparag[1]{\noindent\textbf{#1.}\ }
+
+\newcommand\Webinf[1]{\Web{#1}_\infty}
+%\newcommand\Fin[1]{\mathrm{F}({#1})}
+\newcommand\Fin[1]{\mathsf{F}({#1})}
+%\newcommand\Fin[1]{\mathcal{F}({#1})}
+%\newcommand\Fin[1]{\Phi({#1})}
+
+\newcommand\Phasefin{\mathbb{F}}
+
+\newcommand\Fspace[1]{\mathrm f{#1}}
+\newcommand\Space[1]{\mathrm m{#1}}
+
+
+\newcommand\Ssupp[1]{\Supp{#1}}
+
+\newcommand\FIN{\mathbf{Fin}}
+\newcommand\FINH[2]{\FIN({#1},{#2})}
+\newcommand\FINF[1]{\FIN[{#1}]}
+\newcommand\SETINJ{\mathbf{Inj}}
+\newcommand\EMB{\FIN_{\mathrm e}}
+
+\newcommand\SNat{\mathsf N}
+\newcommand\Snat{\mathsf N}
+\newcommand\Snatcoh{\mathsf N^\NUCS}
+
+\newcommand\Iter[1]{\mathsf{It}_{#1}}
+\newcommand\Piter[2]{\Iter{#1}^{(#2)}}
+\newcommand\Case[1]{\mathsf{Case}_{#1}}
+% \newcommand\Fix[1]{\mathsf{Y}_{#1}}
+\newcommand\Pfix[2]{\mathsf{Y}_{#1}^{(#2)}}
+\newcommand\Ifthenelse[3]{\mathtt{if}\,{#1}\,\mathtt{then}\,{#2}\,%
+\mathtt{else}\,{#3}}
+
+\newcommand\Ptrace[1]{\|{#1}\|}
+\newcommand\Enat[1]{\overline{#1}}
+\newcommand\FA[1]{\forall{#1}}
+% \newcommand\Trcl[2]{\langle {#1},{#2}\rangle}
+\newcommand\Faproj[1]{\epsilon^{#1}}
+\newcommand\Faintro[3]{\Lambda^{{#1},{#2}}({#3})}
+
+\newcommand\Bool{\mathbf{Bool}}
+\newcommand\True{\mathbf t}
+\newcommand\False{\mathbf f}
+
+
+\newcommand\Tarrow{\arrow}
+\newcommand\Diffsymb{\mathsf D}
+\newcommand\Diffapp[2]{\mathsf D{#1}\cdot{#2}}
+\newcommand\Diff[3]{\mathrm D_{#1}{#2}\cdot{#3}}
+\newcommand\Diffexp[4]{\mathrm D_{#1}^{#2}{#3}\cdot{#4}}
+\newcommand\Diffvar[3]{\mathrm D_{#1}{#2}\cdot{#3}}
+\newcommand\Diffterm[3]{\mathrm D_{#1}{#2}\cdot{#3}}
+\newcommand\Zero{0}
+\newcommand\App[2]{({#1}){#2}}
+\newcommand\Apppref[1]{\left({#1}\right)}
+\newcommand\Appp[3]{\left({#1}\right){#2}\,{#3}}
+\newcommand\Abs[2]{\lambda{#1}\,{#2}}
+\newcommand\Abst[3]{\lambda#1^{#2}\,{#3}}
+%\newcommand\Diffp[3]{{\partial{#1}\over\partial{#2}}\cdot u}
+\newcommand\Diffp[3]{\frac{\partial{#1}}{\partial{#2}}\cdot{#3}}
+\newcommand\Diffpev[4]{\frac{\partial{#1}}{\partial{#2}}(#3)\cdot{#4}}
+\newcommand\Diffr[3]{d{\partial{#1}}{d{#2}}\cdot{#3}}
+\newcommand\Derp[3]{\frac{\partial{#1}}{\partial{#2}}\cdot{#3}}
+\newcommand\Derd[3]{\frac{d{#1}}{d{#2}}\cdot{#3}}
+\newcommand\Derdn[4]{\frac{d^{#1}{#2}}{d{#3}^{#1}}\cdot{#4}}
+\newcommand\Derdev[4]{\frac{d{#1}}{d{#2}}(#3)\cdot{#4}}
+\newcommand\Derplist[4]{%
+\frac{\partial^{#4}{#1}}{\partial#2_1\cdots\partial#2_{#4}}%
+\cdot\left(#3_1,\dots,#3_{#4}\right)}
+\newcommand\Derplistexpl[6]{%
+\frac{\partial^{#6}{#1}}{\partial{#2}\cdots\partial{#3}}%
+\cdot\left({#4},\dots,{#5}\right)}
+\newcommand\Derpmult[4]{%
+\frac{\partial^{#4}{#1}}{\partial{#2}^{#4}}%
+\cdot\left(#3_1,\dots,#3_{#4}\right)}
+\newcommand\Derpm[4]{%
+\frac{\partial^{#4}{#1}}{\partial{#2}^{#4}}%
+\cdot\left({#3}\right)}
+\newcommand\Derpmultgros[4]{%
+\frac{\partial^{#4}}{\partial{#2}^{#4}}\left({#1}\right)%
+\cdot\left(#3_1,\dots,#3_{#4}\right)}
+\newcommand\Derpmultbis[4]{%
+\frac{\partial^{#4}{#1}}{\partial{#2}^{#4}}%
+\cdot{#3}}
+\newcommand\Derpmultbisgros[4]{%
+\frac{\partial^{#4}}{\partial{#2}^{#4}}\left({#1}\right)%
+\cdot{#3}}
+\newcommand\Derppar[3]{\left(\Derp{#1}{#2}{#3}\right)}
+\newcommand\Derpgros[3]{\frac{\partial}{\partial{#2}}\Bigl({#1}\Bigr)%
+\cdot{#3}}
+\newcommand\Derpdeux[4]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}%
+\cdot{#4}}
+\newcommand\Derpdeuxbis[5]{\frac{\partial^{#5}{#1}}{\partial{#2}\partial{#3}}%
+\cdot{#4}}
+\newcommand\Diffpv[3]{\frac{\partial}{\partial{#2}}{#1}\cdot{#3}}
+\newcommand\Diffpd[5]{\frac{\partial^2{#1}}{\partial{#2}\partial{#3}}%
+\cdot\left({#4},{#5}\right)}
+
+\newcommand\Paragraph[1]{\smallbreak\noindent\textbf{#1}}
+\newcommand\Parag[1]{\S\ref{#1}}
+
+%\newcommand\Redone{\mathrel{\beta^1_{\mathrm D}}}
+\newcommand\Redamone{\mathrel{\beta^{0,1}}}
+\newcommand\Redonecan{\mathrel{{\bar\beta}^1_{\mathrm D}}}
+%\newcommand\Red{\mathrel{\beta}}
+\newcommand\Redpar{\mathrel{\rho}}
+\newcommand\Redparcan{\mathrel{\bar\rho}}
+
+\newcommand\Sat[1]{#1^*}
+
+\newcommand\Can[1]{\left\langle{#1}\right\rangle}
+\newcommand\Candiff[3]{\Delta_{#1}{#2}\cdot{#3}}
+
+%\newcommand\Eq{\simeq}
+\newcommand\Eq{\simeq}
+
+\newcommand\List[3]{#1_{#2},\dots,#1_{#3}}
+\newcommand\Listbis[3]{#1_{#2}\dots #1_{#3}}
+\newcommand\Listter[3]{#1_{#2}\cdots #1_{#3}}
+\newcommand\Listc[4]{{#1}_{#2},\dots,{#4},\dots,{#1}_{#3}}
+\newcommand\Listbisc[4]{{#1}_{#2}\dots{#4}\dots{#1}_{#3}}
+\newcommand\Absent[1]{\widehat{#1}}
+\newcommand\Kronecker[2]{\boldsymbol\delta_{{#1},{#2}}}
+
+\newcommand\Eqindent{\quad}
+
+\newcommand\Subst[3]{{#1}\left[{#2}/{#3}\right]}
+\newcommand\Substv[3]{{#1}\left[{#2\,}/{#3}\right]}
+\newcommand\Substz[2]{{#1}\left[0/{#2}\right]}
+%\newcommand\Substpar[3]{\left({#1}\right)\left[{#2}/{#3}\right]}
+\newcommand\Substpar[3]{\Bigl({#1}\Bigr)\left[{#2}/{#3}\right]}
+\newcommand\Substbis[2]{{#1}[{#2}]}
+\newcommand\Substapp[2]{{#1}{#2}}
+\newcommand\Substlinapp[2]{{#2}[{#1}]}
+
+\newcommand\Span[1]{\overline{#1}}
+\newcommand\SN{\mathcal{N}}
+\newcommand\WN{\mathcal{N}}
+\newcommand\Extred[1]{\mathop{\mathrm R}^{\textrm{ext}}{(#1)}}
+\newcommand\Onered[1]{\mathop{\mathrm R}^1{(#1)}}
+\newcommand\NO[1]{\mathop{\mathrm N}({#1})}
+\newcommand\NOD[1]{\mathop{\mathrm N_0}({#1})}
+
+
+
+\newcommand\Freemod[2]{{#1}\left\langle{#2}\right\rangle}
+\newcommand\Mofl[1]{{#1}^\#}
+\newcommand\Mlext[1]{\widetilde{#1}}
+\newcommand\Difflamb{\Lambda_D}
+\newcommand\Terms{\Lambda_{\mathrm D}}
+\newcommand\Diffmod{\Freemod R\Difflamb}
+
+\newcommand\Factor[1]{{#1}!}
+\newcommand\Binom[2]{\genfrac{(}{)}{0pt}{}{#1}{#2}}
+% \newcommand\Multinom[2]{\left[#2\right]}
+
+\newcommand\Multinom[2]{\mathsf{mn}(#2)}
+
+\newcommand\Multinomb[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand\Suite[1]{\bar#1}
+\newcommand\Head[1]{\mathrel{\tau^{#1}}}
+
+\newcommand\Headlen[2]{{\mathrm{L}}({#1},{#2})}
+\newcommand\Betaeq{\mathrel{\mathord\simeq_\beta}}
+\newcommand\Betadeq{\mathrel{\mathord\simeq_{\beta_{\mathrm D}}}}
+
+\newcommand\Vspace[1]{E_{#1}}
+\newcommand\Real{\mathbb{R}}
+%\newcommand\Realp{\mathbb{R}^+}
+\newcommand\Realp{\mathbb{R}_{\geq 0}}
+\newcommand\Realpnz{\mathbb{R}_{>0}}
+\newcommand\Realpto[1]{(\Realp)^{#1}}
+\newcommand\Realto[1]{\Real^{#1}}
+\newcommand\Realptow[1]{(\Realp)^{\Web{#1}}}
+\newcommand\Realpc{\overline{\Realp}}
+\newcommand\Realpcto[1]{\Realpc^{#1}}
+\newcommand\Izu{[0,1]}
+\newcommand\Intercc[2]{[#1,#2]}
+\newcommand\Interoc[2]{(#1,#2]}
+\newcommand\Interco[2]{[#1,#2)}
+\newcommand\Interoo[2]{(#1,#2)}
+\newcommand\Rational{\mathbb Q}
+
+\newcommand\Ring{R}
+\newcommand\Linapp[2]{\left\langle{#1}\right\rangle{#2}}
+\newcommand\Linappbig[2]{\Bigl\langle{#1}\Bigr\rangle{#2}}
+\newcommand\Fmod[2]{{#1}\langle{#2}\rangle}
+\newcommand\Fmodr[1]{{\Ring}\langle{#1}\rangle}
+\newcommand\Imod[2]{{#1}\langle{#2}\rangle_\infty}
+\newcommand\Imodr[1]{{\Ring}\langle{#1}\rangle_\infty}
+\newcommand\Res[2]{\langle{#1},{#2}\rangle}
+% \newcommand\Funofmat[1]{\widehat{#1}}
+%\newcommand\Transp[1]{{}^{\mathrm{t}}\!{#1}}
+\newcommand\Transp[1]{\Orth{#1}}
+\newcommand\Idmat{\operatorname{I}}
+\newcommand\FINMOD[1]{\operatorname{\mathbf{Fin}\,}({#1})}
+\newcommand\Bcanon[1]{e_{#1}}
+
+\newcommand\Mfin[1]{\mathcal M_\Fini({#1})}
+\newcommand\Mfinc[2]{\mathcal M_{#1}({#2})}
+%\newcommand\Size[1]{\Sigma({#1})}
+\newcommand\Expt[2]{\operatorname{exp}_{#1}({#2})}
+\newcommand\Dexpt[2]{\operatorname{exp}'_{#1}({#2})}
+
+\newcommand\Semtype[1]{{#1}^*}
+\newcommand\Semterm[2]{{#1}^*_{#2}}
+
+\newcommand\Elem[1]{\operatorname{Elem}({#1})}
+\newcommand\Fcard[1]{\operatorname{Card}({#1})}
+\newcommand\Linhom[2]{\SCOTTLIN({#1},{#2})}
+%\newcommand\Hom[2]{\cA({#1},{#2})}
+\newcommand\Hom[2]{\operatorname{Hom}(#1,#2)}
+\newcommand\Compana{\circ_\cA}
+
+% \newcommand\Der[1]{\operatorname{\mathsf d}^{#1}}
+% \newcommand\Digg[1]{\operatorname{\mathsf p}^{#1}}
+
+
+%\newcommand\Conv[1]{\operatorname{c}^{#1}}
+\newcommand\IConv{\mathrel{*}}
+\newcommand\Exclun[1]{\operatorname{u}^{#1}}
+\newcommand\Derzero[1]{\partial^{#1}_0}
+\newcommand\Dermorph[1]{\partial^{#1}}
+\newcommand\Dirac[1]{\delta_{#1}}
+\newcommand\Diracm{\delta}
+
+\newcommand\Lintop[1]{\lambda({#1})}
+\newcommand\Neigh[2]{\operatorname{\cV}_{#1}(#2)}
+\newcommand\Matrix[1]{\mathsf{M}({#1})}
+
+\newcommand\Ev{\operatorname{\mathsf{Ev}}}
+\newcommand\Evlin{\operatorname{\mathsf{ev}}}
+\newcommand\REL{\operatorname{\mathbf{Rel}}}
+\newcommand\RELK{\operatorname{\mathbf{Rel}_\oc}}
+\newcommand\RELPOC{\operatorname{\mathbf{RelC}}}
+
+\newcommand\Diag[1]{\Delta^{#1}}
+\newcommand\Codiag[1]{\operatorname{a}^{#1}}
+\newcommand\Norm[1]{\|{#1}\|}
+\newcommand\Normsp[2]{\|{#1}\|_{#2}}
+
+\newcommand\Tpower[2]{{#1}^{\otimes{#2}}}
+
+\newcommand\Termty[3]{{#1}\vdash{#2}:{#3}}
+\newcommand\Polyty[3]{{#1}\vdash_!{#2}:{#3}}
+
+\newcommand\Ruleskip{\quad\quad\quad\quad}
+
+\newcommand\Sterms{\Delta}
+%\newcommand\Polysymb{\mathrm{p}}
+\newcommand\Polysymb{!}
+\newcommand\Pterms{\Delta^{\Polysymb}}
+\newcommand\SPterms{\Delta^{(\Polysymb)}}
+\newcommand\Nsterms{\Delta_0}
+\newcommand\Npterms{\Delta_0^{\Polysymb}}
+\newcommand\Nspterms{\Delta^{(\Polysymb)}_0}
+
+\newcommand\Relspan[1]{\overline{#1}}
+\newcommand\Rel[1]{\mathrel{#1}}
+
+%\newcommand\Redone{\bar{\beta}^1_\Delta}
+\newcommand\Redmult{\bar{\beta}^{\mathrm{b}}_\Delta}
+\newcommand\Red{\beta_\Delta}
+\newcommand\Redst[1]{\mathop{\mathsf{Red}}}
+
+\newcommand\Redredex{\beta^1_\Delta}
+\newcommand\Redredexm{\beta^{\mathrm{b}}_\Delta}
+
+
+\newcommand\Multn{\mathsf{m}}
+\newcommand\Shape[1]{\mathcal{T}(#1)}
+\newcommand\Tay[1]{{#1}^*}
+
+\newcommand\Deg[1]{\textsf{deg}_{#1}}
+\newcommand\Linearize[2]{\mathcal L^{#1}_{#2}}
+\newcommand\Fmodrel{\Fmod}
+
+\newcommand\Redeq{=_\Delta}
+\newcommand\Kriv{\mathsf K}
+\newcommand\Dom[1]{\operatorname{\mathsf{D}}(#1)}
+\newcommand\Cons{::}
+\newcommand\Addtofun[3]{{#1}_{{#2}\mapsto{#3}}}
+\newcommand\Tofclos{\mathsf T}
+\newcommand\Tofstates{\mathsf T}
+\newcommand\Tofstate[3]{\Tofstates(#1,#2,#3)}
+\newcommand\Tofstatez[2]{\Tofstates_0(#1,#2)}
+\newcommand\BT{\operatorname{\mathsf{BT}}}
+\newcommand\NF{\operatorname{\mathsf{NF}}}
+
+\newcommand\Tofst[1]{\langle#1\rangle}
+
+\newcommand\Msubst[3]{\partial_{#3}(#1,#2)}
+\newcommand\Msubstbig[3]{\partial_{#3}\bigl(#1,#2\bigr)}
+\newcommand\MsubstBig[3]{\partial_{#3}\Bigl(#1,#2\Bigr)}
+\newcommand\Symgrp[1]{\mathfrak S_{#1}}
+
+\newcommand\Tcoh{\mathrel{\frownsmile}}
+\newcommand\Tcohs{\mathrel{\frown}}
+\newcommand\Size{\mathop{\textsf{size}}}
+
+\newcommand\Varset{\mathcal{V}}
+\newcommand\NC[1]{\langle{#1}\rangle}
+\newcommand\Tuple[1]{\langle{#1}\rangle}
+\newcommand\Cotuple[1]{\left[{#1}\right]}
+\newcommand\Treeterms{\mathsf{T}}
+\newcommand\Tree[2]{\mathop{\mathrm{tree}_{#1}}({#2})}
+\newcommand\Treeeq[1]{P_{#1}}
+%\newcommand\Fvar[1]{\mathcal{V}({#1})}
+\newcommand\Fvar[1]{\mathop{\textsf{fv}}({#1})}
+%\newcommand\Avar[1]{\mathcal{V}_A({#1})}
+\newcommand\Avar[1]{\Fvar{#1}}
+
+\newcommand\Msetofsubst[1]{\bar F}
+\newcommand\Invgrp[2]{\mathsf G({#1},{#2})}
+\newcommand\Invgrpsubst[3]{\mathsf G({#1},{#2},{#3})}
+\newcommand\Eqofpart[1]{\mathrel{\mathord{\sim}_{#1}}}
+\newcommand\Order[1]{\left|{#1}\right|}
+\newcommand\Inv[1]{{#1}^{-1}}
+\newcommand\Invp[1]{({#1})^{-1}}
+\newcommand\Linext[1]{\widetilde{#1}}
+\newcommand\Linauto{\operatorname{\mathsf{Iso}}}
+
+%\newcommand\Card[1]{\operatorname{\mathsf{card}}(#1)}
+
+%\newcommand\Card[1]{\Order{#1}}
+\newcommand{\Ens}[1]{\{#1\}}
+
+\newcommand\Dummy{\_}
+
+\newcommand\Varrename[2]{{#2}^{#1}}
+
+\newcommand\Pcoh[1]{\mathsf P{#1}}
+\newcommand\Pcohp[1]{\Pcoh{(#1)}}
+\newcommand\Pcohc[1]{\overline{\mathsf P}{#1}}
+\newcommand\Pcohcp[1]{\Pcohc{(#1)}}
+\newcommand\Pcohsig[1]{\mathsf B_1{#1}}
+%\newcommand\Base[1]{e_{#1}}
+%\newcommand\Base[1]{\overline{#1}}
+\newcommand\Base[1]{\mathsf e_{#1}}
+%\newcommand\Matapp[2]{{#1}\cdot{#2}}
+\newcommand\Matapp[2]{{#1}\Compl{#2}}
+
+\newcommand\PCOH{\mathbf{Pcoh}}
+\newcommand\PCOHKL{\mathbf{Pcoh}_!}
+\newcommand\PCOHEMB{\mathbf{Pcoh}_{\mathord\subseteq}}
+
+
+\newcommand\Leftu{\lambda}
+\newcommand\Rightu{\rho}
+\newcommand\Assoc{\alpha}
+\newcommand\Sym{\gamma}
+\newcommand\Msetempty{\Mset{\,}}
+
+
+\newcommand\Tenstg[3]{\Tens{(\Tens{#1}{#2})}{#3}}
+\newcommand\Tenstd[3]{\Tens{#1}{(\Tens{#2}{#3})}}
+
+\newcommand\Banach[1]{\mathsf e{#1}}
+\newcommand\Absval[1]{\left|{#1}\right|}
+
+\newcommand\Msetsum[1]{\Sigma{#1}}
+
+\newcommand\Retri\zeta
+\newcommand\Retrp\rho
+
+\newcommand\Subpcs{\subseteq}
+\newcommand\Cuppcs{\mathop{\cup}}
+
+\newcommand\Impl[2]{{#1}\Rightarrow{#2}}
+\newcommand\Implp[2]{({#1}\Rightarrow{#2})}
+\newcommand\Basemax[1]{\mathsf c_{#1}}
+
+\newcommand\Isosucc{\mathsf s}
+
+\newcommand\Leqway{\ll}
+
+\newcommand\Funofmat[1]{\mathsf{fun}(#1)}
+\newcommand\Funkofmat[1]{\mathsf{Fun}(#1)}
+
+\newcommand\Pcoin[3]{\mathsf{ran}({#1},{#2},{#3})}
+
+% \newcommand\Tsem[2]{[{#1}]_{#2}}
+% \newcommand\Tsem[1]{[{#1}]}
+% \newcommand\Tseme[1]{[{#1}]^{\mathord\oc}}
+% \newcommand\Psem[2]{[{#1}]_{#2}}
+
+\newcommand\Tsem[1]{\llbracket{#1}\rrbracket}
+\newcommand\Tsemrel[1]{\llbracket{#1}\rrbracket^{\REL}}
+\newcommand\Tsempcoh[1]{\llbracket{#1}\rrbracket^{\PCOH}}
+\newcommand\Tsemcoh[1]{\llbracket{#1}\rrbracket^{\NUCS}}
+\newcommand\Tseme[1]{\llbracket{#1}\rrbracket^{\mathord\oc}}
+\newcommand\Psem[2]{\llbracket{#1}\rrbracket_{#2}}
+\newcommand\Psemrel[2]{\llbracket{#1}\rrbracket^{\REL}_{#2}}
+\newcommand\Psemcoh[2]{\llbracket{#1}\rrbracket^{\NUCS}_{#2}}
+\newcommand\Psempcoh[2]{\llbracket{#1}\rrbracket^{\PCOH}_{#2}}
+
+
+
+\newcommand\Tnat\iota
+\newcommand\Fix[1]{\operatorname{\mathsf{fix}}(#1)}
+\newcommand\If[3]{\operatorname{\mathsf{if}}(#1,#2,#3)}
+%\newcommand\Pred[1]{\operatorname{\mathsf{pred}}(#1)}
+\newcommand\Pred[1]{\operatorname{\mathsf{pred}}(#1)}
+\newcommand\Succ[1]{\operatorname{\mathsf{succ}}(#1)}
+\newcommand\Num[1]{\underline{#1}}
+\newcommand\Loop\Omega
+\newcommand\Loopt[1]{\Omega^{#1}}
+%\newcommand\Ran[3]{\operatorname{\mathsf{ran}}_{#1}(#2,#3)}
+\newcommand\Ran[1]{\mathsf{ran}(#1)}
+%\newcommand\Dice[1]{\operatorname{\mathsf{dice}}(#1)}
+\newcommand\Dice[1]{\operatorname{\mathsf{coin}}(#1)}
+\newcommand\Tseq[3]{{#1}\vdash{#2}:{#3}}
+\newcommand\Ptseq[3]{{#1}\vdash_0{#2}:{#3}}
+%\newcommand\Tseqst[2]{{#1}\vdash{#2}}
+\newcommand\Eseq[5]{{#1}\vdash{#2}:{((#3\to #4)\to #5)}}
+\newcommand\Timpl\Impl
+\newcommand\Timplp\Implp
+\newcommand\Simpl\Impl
+\newcommand\Simplp[2]{(\Impl{#1}{#2})}
+
+\newcommand\Pcfred{\beta_{\mathsf{cd}}}
+
+\newcommand\PCFP{\mathsf{pPCF}}
+%\newcommand\PCFD{\mathsf{dPCF}}
+\newcommand\PCFD{\Lang}
+\newcommand\PCF{\mathsf{PCF}}
+\newcommand\PCFPZ{\mathsf{pPCF}^-}
+
+\newcommand\Curry[1]{\operatorname{\mathsf{Cur}}({#1})}
+\newcommand\Fixpcoh[1]{\operatorname{\mathsf{Fix}}_{#1}}
+
+\newcommand\Pnat{\mathbf N}
+
+%\newcommand\Hole{[\ ]}
+%\newcommand\Holet[1]{[\ \ ]^{#1}}
+%\newcommand\Hsubst[2]{{#1}[{#2}]}
+
+\newcommand\Evcontext[1]{\mathsf C_{#1}}
+\newcommand\Evhead[1]{\mathsf H_{#1}}
+\newcommand\Reduct[1]{\operatorname{\mathsf{red}}({#1})}
+\newcommand\Ready[1]{\operatorname{\mathsf{ready}}({#1})}
+\newcommand\Undefready[1]{\operatorname{\mathsf{ready}}({#1})\mathord\uparrow}
+\newcommand\Defready[1]{\operatorname{\mathsf{ready}}({#1})\mathord\downarrow}
+
+\newcommand\Contextempty{\emptyset}
+
+%\newcommand\States{\operatorname{\mathsf S}}
+
+\newcommand\Stateloop[1]{\perp^{#1}}
+\newcommand\Matred{\operatorname{\mathsf{Red}}}
+
+\newcommand\Vecrow[1]{\operatorname{\mathsf r}_{#1}}
+\newcommand\Veccol[1]{\operatorname{\mathsf c}_{#1}}
+
+\newcommand\Plotkin[1]{\cR^{#1}}
+
+\newcommand\Redone[1]{\stackrel{#1}\rightarrow}
+\newcommand\Redonetr[1]{\stackrel{#1}{\rightarrow^*}}
+\newcommand\Redoned{\rightarrow_{\mathsf d}}
+
+\newcommand\Transition{\leadsto}
+\newcommand\Probatransp{\operatorname{\mathsf p}}
+\newcommand\Lg{\operatorname{\mathsf{lg}}}
+\newcommand\Emptyseq{1}
+
+%\newcommand\FIX[1]{\mathsf{FIX}(#1)}
+
+\newcommand\Cbsdirect[1]{{#1}^+}
+\newcommand\Cbsdual[1]{{#1}^-}
+\newcommand\Cbsres[3]{\left\langle#2,#3\right\rangle_{#1}}
+\newcommand\Cbsdirectn[2]{\left\|{#2}\right\|_{#1}^+}
+\newcommand\Cbsdualn[2]{\left\|{#2}\right\|_{#1}^-}
+\newcommand\Cbsdirectp[1]{\mathsf C_{#1}^+}
+\newcommand\Cbsdualp[1]{\mathsf C_{#1}^-}
+
+\newcommand\Cbsofpcs[1]{\mathsf{cbs}({#1})}
+
+\newcommand\Init[2][]{\mathop{\mathord\downarrow}_{#1}{#2}}
+\newcommand\Final[2][]{\mathop{\mathord\uparrow}_{#1}{#2}}
+\newcommand\Poop[1]{{#1}^{\mathrm{op}}}
+\newcommand\Dual[1][]{\mathrel{\mathord\perp}_{#1}}
+
+\newcommand\PP{PP}
+
+\newcommand\Scottsymb{\mathsf S}
+
+% \newcommand\Weak[1]{\operatorname{\mathsf{weak}}_{#1}}
+\newcommand\Weak[1]{\operatorname{\mathsf{weak}}_{#1}}
+\newcommand\Contr[1]{\operatorname{\mathsf{contr}}_{#1}}
+\newcommand\WeakS[1]{\Weak{#1}^\Scottsymb}
+\newcommand\ContrS[1]{\Contr{#1}^\Scottsymb}
+
+\newcommand\Contrc[1]{\operatorname{\mathsf{contr}}_{#1}}
+
+\newcommand\Der[1]{\operatorname{\mathsf{der}}_{#1}}
+%\newcommand\Coder[1]{\operatorname{\mathord\partial}_{#1}}
+\newcommand\Coder{\overline{\mathsf{der}}}
+\newcommand\Digg[1]{\operatorname{\mathsf{dig}}_{#1}}
+\newcommand\DerS[1]{\Der{#1}^{\Scottsymb}}
+\newcommand\DiggS[1]{\Digg{#1}^{\Scottsymb}}
+
+\newcommand\Lfun{\operatorname{\mathsf{fun}}}
+%\newcommand\Fun{\operatorname{\mathsf{Fun}}}
+\newcommand\Fun[1]{\widehat{#1}}
+
+
+\newcommand\LfunS{\Lfun^\Scottsymb}
+\newcommand\FunS{\Fun^\Scottsymb}
+
+\newcommand\Ltrace{\mathsf{tr}}
+\newcommand\Trace{\mathsf{Tr}}
+\newcommand\LtraceS{\mathsf{tr}^\Scottsymb}
+\newcommand\TraceS{\mathsf{Tr}^\Scottsymb}
+
+\newcommand\Id{\operatorname{\mathsf{Id}}}
+\newcommand\IdS{\Id^\Scottsymb}
+
+\newcommand\Proj[1]{\mathsf{pr}_{#1}}
+\newcommand\Proje[1]{\mathsf{pr}^{\Klsymb}_{#1}}
+\newcommand\ProjS[1]{\Proj{#1}^\Scottsymb}
+\newcommand\EvS{\Ev^\Scottsymb}
+\newcommand\EvlinS{\Evlin^\Scottsymb}
+
+%\newcommand\Excl[1]{\IExcl{#1}}
+% \newcommand\Oc[1]{\oc{#1}}
+% \newcommand\Occ[1]{\oc\oc{#1}}
+\newcommand\Oc{\oc}
+\newcommand\Occ{\oc\oc}
+\newcommand\Ocpp[1]{\oc({#1})}
+%\newcommand\Int[1]{\IInt{#1}}
+\newcommand\Wn[1]{\wn{#1}}
+\newcommand\Wnp[1]{\wn({#1})}
+%\newcommand\ExclS[1]{\oc^\Scottsymb{#1}}
+%\newcommand\IntS[1]{\wn^\Scottsymb{#1}}
+\newcommand\OcS{\Excl}
+\newcommand\WnS{\Int}
+
+\newcommand\Ocg{\oc_{\mathsf g}}
+
+\newcommand\Prom[1]{#1^!}
+\newcommand\Promp[1]{(#1)^!}
+\newcommand\Promm[1]{{#1}^{!!}}
+\newcommand\Prommm[1]{{#1}^{!!!}}
+%\newcommand\PromS[1]{{#1}^{!^\Scottsymb}}
+%\newcommand\PrommS[1]{{#1}^{!^\Scottsymb!^\Scottsymb}}
+\newcommand\PromS{\Prom}
+\newcommand\PrommS{\Promm}
+
+\newcommand\SCOTTLIN{\operatorname{\mathbf{ScottL}}}
+\newcommand\SCOTTPOC{\operatorname{\mathbf{ScottC}}}
+\newcommand\SCOTTLINKL{\operatorname{\mathbf{ScottL}}_\oc}
+\newcommand\SCOTTLINK{\operatorname{\mathbf{ScottL}}_\oc}
+\newcommand\PPLIN{\operatorname{\mathbf{PpL}}}
+\newcommand\PPLINK{\operatorname{\mathbf{PpL}}_\oc}
+\newcommand\PPPOC{\operatorname{\mathbf{PpC}}}
+\newcommand\RELLIN{\operatorname{\mathbf{RelL}}}
+\newcommand\PERLIN{\operatorname{\mathbf{PerL}}}
+\newcommand\PERPOC{\operatorname{\mathbf{PerC}}}
+\newcommand\PERLINK{\operatorname{\mathbf{PerL}_\oc}}
+
+\newcommand\Mix{\operatorname{\mathsf{mix}}}
+
+\newcommand\Realize[1]{\Vdash_{#1}}
+\newcommand\Collapseeq[1]{\sim_{#1}}
+
+\newcommand\Relsem[1]{\left[{#1}\right]}
+%\newcommand\Perofpp[1]{\widehat{#1}}
+\newcommand\Perofpp[1]{\epsilon_0({#1})}
+\newcommand\Perofppf{\epsilon_0}
+\newcommand\Scottofpp[1]{\sigma_0({#1})}
+\newcommand\Scottofppf{\sigma_0}
+
+\newcommand\Perofpprel[1]{\mathrel B_{#1}}
+\newcommand\Perofppr[1]{\Collapseeq{\Perofpp{#1}}}
+\newcommand\Perofppro[1]{\Collapseeq{\Orth{\Perofpp{#1}}}}
+
+\newcommand\Kapp[2]{#1(#2)}
+
+\newcommand\Left{\mathsf l}
+\newcommand\Up{\mathsf u}
+\newcommand\Upleft{\mathsf{ul}}
+\newcommand\Upright{\mathsf{ur}}
+
+\newcommand\Collapsecat{\operatorname{\mathsf e}}
+\newcommand\Hetercat{\operatorname{\mathsf e}}
+\newcommand\Hetercatmod{\operatorname{\mathsf e_{\mathsf{mod}}}}
+\newcommand\Heterobjnext[1]{\ulcorner{#1}\urcorner}
+\newcommand\Heterobjext[1]{\llcorner{#1}\lrcorner}
+\newcommand\Heternext[1]{\ulcorner{#1}\urcorner}
+\newcommand\Heterext[1]{\llcorner{#1}\lrcorner}
+\newcommand\Collapseobj[1]{\ulcorner{#1}\urcorner}
+\newcommand\Collapsenext{\rho}
+
+
+\newcommand\EXT{\sigma}
+\newcommand\COLL{\epsilon}
+\newcommand\COLLL{\epsilon_0}
+
+\newcommand\Subper{\sqsubseteq}
+\newcommand\Unionper{\bigsqcup}
+\newcommand\Purerel{\cD_{\mathsf r}}
+\newcommand\Pureper{\cD_{\mathsf e}}
+\newcommand\Pureperstep{\Phi_{\mathsf e}}
+
+\newcommand\Subpo{\sqsubseteq}
+\newcommand\Unionpo{\bigsqcup}
+\newcommand\Purepo{\cD_{\mathsf s}}
+\newcommand\Purepostep{\Phi_{\mathsf s}}
+
+\newcommand\Subpp{\sqsubseteq}
+\newcommand\Unionpp{\bigsqcup}
+\newcommand\Purepp{\cD_{\mathsf{pp}}}
+\newcommand\Pureheter{\cD_{\mathsf{h}}}
+\newcommand\Pureppstep{\Phi_{\mathsf{pp}}}
+
+\newcommand\Appmod{\operatorname{\mathsf{app}}}
+\newcommand\Lammod{\operatorname{\mathsf{lam}}}
+
+\newcommand\Kloc[1]{{#1}_{\mathord\oc}}
+
+\newcommand\Initw[2]{\Init[\Web{#1}]{#2}}
+\newcommand\Finalw[2]{\Final[\Web{#1}]{#2}}
+
+\newcommand\Heterofpp{\mathsf h}
+\newcommand\Collofper{\mathsf q}
+
+\newcommand\Hetermod{Z}
+
+\newcommand\Relincl\eta
+\newcommand\Relrestr\rho
+
+\newcommand\Seely{\mathsf m}
+\newcommand\Seelyz{\Seely^0}
+\newcommand\Seelyt{\Seely^2}
+\newcommand\Monoidal{\mu}
+
+\newcommand\Compl{\,}
+\newcommand\Curlin{\operatorname{\mathsf{cur}}}
+\newcommand\Curlinp[1]{\Curlin(#1)}
+\newcommand\Cur{\operatorname{\mathsf{Cur}}}
+
+\newcommand\Op[1]{{#1}^{\mathsf{op}}}
+\newcommand\Kl[1]{{#1}_\oc}
+\newcommand\Em[1]{{#1}^\oc}
+\newcommand\Klcat[2]{{#1}_{#2}}
+\newcommand\Emcat[2]{{#1}^{#2}}
+
+
+\newcommand\NUM[1]{\underline{#1}}
+\newcommand\SUCC{\mathsf{succ}}
+\newcommand\PRED{\mathsf{pred}}
+\newcommand\IF{\mathsf{if}}
+\newcommand\IFV[3]{\IF(#1,(#2)\,#3)}
+%\newcommand\Ifv[4]{\IF(#1,#2,(#3)\,#4)}
+%\newcommand\Ifv[4]{\IF(#1,#2,[#3]\,#4)}
+\newcommand\Ifv[4]{\IF(#1,#2,#3\cdot #4)}
+\newcommand\FIX{\mathsf{fix}}
+\newcommand\FIXV[2]{\mathsf{fix}\,#1\cdot#2}
+\newcommand\FIXVT[3]{\mathsf{fix}\,#1^{#2}\,#3}
+\newcommand\Fixt[3]{\mathsf{fix}\,#1^{#2}\,#3}
+\newcommand\APP[2]{(#1)#2}
+\newcommand\ABST[3]{\lambda #1^{#2}\, #3}
+%\newcommand\MUT[3]{\mu #1:#2\, #3}
+\newcommand\MUT[3]{\mu #1^{#2}\, #3}
+\newcommand\MU[2]{\mu #1\, #2}
+\newcommand\NAMED[2]{[#1]#2}
+
+\newcommand\Abstpref[2]{\lambda #1^{#2}\,}
+
+\newcommand\NAT{\iota}
+\newcommand\IMPL[2]{#1\Rightarrow #2}
+
+\newcommand\SEQ[4]{#1\vdash #2:#3\mid #4}
+\newcommand\SEQI[3]{#1\vdash #2:#3}
+\newcommand\SEQN[3]{#1\vdash #2\mid #3}
+\newcommand\SEQP[3]{#1\vdash #2\mid #3}
+\newcommand\SEQS[4]{#1\mid #2:#3\vdash #4}
+
+\newcommand\HOLE{[\ ]}
+
+\newcommand\Redpcf{\mathord{\to}}
+\newcommand\Redpcfi{\mathord{\to_{\mathsf{PCF}}}}
+\newcommand\Redclean{\relstack\to{\mathsf{cl}}}
+
+\newcommand\Freenames{\mathsf{FN}}
+
+\newcommand\STARG[1]{\mathsf{arg}(#1)}
+\newcommand\STIF[2]{\mathsf{ifargs(#1,#2)}}
+\newcommand\STSUCC{\mathsf{succ}}
+\newcommand\STPRED{\mathsf{pred}}
+\newcommand\EMPTY{\epsilon}
+\newcommand\CONS[2]{#1\cdot #2}
+\newcommand\PUSH[2]{#1\cdot #2}
+\newcommand\STATE[3]{#1\star #2\mid #3}
+\newcommand\TAPP[2]{#1\star#2}
+\newcommand\PROC[2]{#1\star#2}
+
+\newcommand\Div[1]{#1\uparrow}
+\newcommand\Conv[2]{#1\downarrow#2}
+\newcommand\Convproba[1]{\mathrel{\downarrow^{#1}}}
+
+\newcommand\Pcftrad[1]{{#1}^\bullet}
+\newcommand\Transcl[1]{{#1}^*}
+
+\newcommand\Conn[1]{\gamma_{#1}}
+\newcommand\Sing[1]{\mathsf C(#1)}
+\newcommand\RELW{\operatorname{\mathbf{RelW}}}
+
+\newcommand\Natrelw{\mathsf{N}}
+
+\newcommand\Least{\bot}
+
+\newcommand\Posnat{\overline{\mathsf N}}
+\newcommand\Botnat{\Bot}
+\newcommand\Coalgst[1]{h_{#1}}
+\newcommand\Coalgca[1]{\underline{#1}}
+\newcommand\Coalgw[1]{\mathsf w_{#1}}
+\newcommand\Coalgc[1]{\mathsf c_{#1}}
+
+\newcommand\Ifrel{\mathsf{if}}
+
+\newcommand\Eval[2]{\langle#1,#2\rangle}
+
+%\newcommand\Let[3]{\mathsf{let}\ #1\ \mathsf{be}\ #2\ \mathsf{in}\ #3}
+\newcommand\Let[3]{\mathsf{let}(#1,#2,#3)}
+
+\newcommand\Add{\mathsf{add}}
+\newcommand\Exp{\mathsf{exp}_2}
+\newcommand\Cmp{\mathsf{cmp}}
+
+\newcommand\Unift{\mathsf{unif}_2}
+\newcommand\Unif{\mathsf{unif}}
+
+\newcommand\Closed[1]{\Lambda^{#1}_0}
+\newcommand\Open[2]{\Lambda^{#2}_{#1}}
+
+\newcommand\Redmat[1]{\mathsf{Red}(#1)}
+\newcommand\Redmats{\mathsf{Red}}
+\newcommand\Redmato[2]{\mathsf{Red}(#1,#2)}
+
+\newcommand\Mexpset[2]{\mathsf L(#1,#2)}
+
+\newcommand\Expmonisoz{\Seely^0}
+\newcommand\Expmonisob[2]{\Seely^2_{#1,#2}}
+\newcommand\Expmonisobn{\Seely^2}
+
+\newcommand\Injms[2]{#1\cdot#2}
+
+\newcommand\Natobj{\mathsf{N}}
+\newcommand\Natalg{h_\Natobj}
+
+\newcommand\Snum[1]{\overline{#1}}
+\newcommand\Sif{\overline{\mathsf{if}}}
+\newcommand\Sifk{\overline{\mathsf{if}_{(\oc)}}}
+\newcommand\Ssuc{\overline{\mathsf{suc}}}
+\newcommand\Spred{\overline{\mathsf{pred}}}
+\newcommand\Szero{\overline{\mathsf{zero}}}
+
+%\newcommand\Sfix{\mathcal{Y}}
+\newcommand\Sfix{\mathsf{Fix}}
+
+\newcommand\Vect[1]{\vec{#1}}
+
+\newcommand\Rts[1]{\cR^{#1}}
+
+\newcommand\Probw[1]{\mathsf p(#1)}
+\newcommand\Spath[2]{\mathsf{R}(#1,#2)}
+
+\newcommand\Obseq{\sim}
+\newcommand\Obsleq{\lesssim}
+
+\newcommand\Ptest[1]{{#1}^+}
+\newcommand\Ntest[1]{{#1}^-}
+% \newcommand\Plen{\mathsf{len}^+}
+% \newcommand\Nlen{\mathsf{len}^-}
+\newcommand\Plen[1]{|#1|^+}
+\newcommand\Nlen[1]{|#1|^-}
+
+\newcommand\Shift{\mathsf{shift}}
+\newcommand\Shvar[2]{\App{\Shift_{#1}}{#2}}
+
+\newcommand\Probe{\mathsf{prob}}
+\newcommand\Pprod{\mathsf{prod}}
+\newcommand\Pchoose{\mathsf{choose}}
+
+\newcommand\Argsep{\,}
+
+\newcommand\Simplex[1]{\Delta_{#1}}
+
+\newcommand\Embi{\eta^+}
+\newcommand\Embp{\eta^-}
+
+\newcommand\Shvec[2]{{#1}\left\{{#2}\right\}}
+\newcommand\ShvecBig[2]{{#1}\Big\{{#2}\Big\}}
+
+\newcommand\Msetu[1]{\mathsf o(#1)}
+\newcommand\Msetb[2]{\mathsf o(#1,#2)}
+%\newcommand\Msetb[2]{\Msetu{\{#1,#1+1,#1+#2-1\}}}
+
+\newcommand\Mfinex[2]{\cM^-(#1,#2)}
+\newcommand\Mfinr[2]{\Mfin{#1,#2}}
+%\newcommand\Mfinr[2]{\Mfin{\{#1,#1+1,#1+#2-1\}}}
+
+\newcommand\Canb[1]{\mathsf e_{#1}}
+
+\newcommand\Prem[2]{\pi(#1,#2)}
+\newcommand\Nrem[2]{\mu(#1,#2)}
+
+\newcommand\Restrms[3]{\mathsf W(#1,#2,#3)}
+\newcommand\Shleft[2]{\mathsf S(#1,#2)}
+
+\newcommand\Listarg[3]{\,#1_{#2}\cdots#1_{#3}}
+
+\newcommand\Rseg[2]{[#1,#2]}
+
+\newcommand\Iftrans[2]{#1^\bullet_{#2}}
+
+\newcommand\Bnfeq{\mathrel{\mathord:\mathord=}}
+\newcommand\Bnfor{\,\,\mathord|\,\,}
+
+\newcommand\PPCF{\mathsf{pPCF}}
+
+\newcommand\Hempty{\ \ }
+\newcommand\Hole[2]{[\Hempty]^{#1\vdash #2}}
+%\newcommand\Thole[4]{#1[#2]^{#3\vdash #4}}
+\newcommand\Thole[3]{#1^{#2\vdash #3}}
+%\newcommand\Thsubst[4]{#1[#2]^{#3\vdash #4}}
+\newcommand\Thsubst[2]{#1[#2]}
+
+\newcommand\Tseqh[5]{\Tseq{#1}{\Thole{#2}{#3}{#4}}{#5}}
+
+\newcommand\Locpcs[2]{{#1}_{#2}}
+
+% dérivée pour les fonctions dans Kl(Pcoh)
+\newcommand\Deriv[1]{{#1}'}
+
+% fonction associée à un morphisme de la cat de Kl
+\newcommand\Klfun[1]{\Fun{#1}}
+
+%\newcommand\Realize{\Vdash}
+
+\newcommand\Distsp[3]{\mathsf d_{#1}(#2,#3)}
+\newcommand\Distspsymb[1]{\mathsf d_{#1}}
+\newcommand\Distobs[2]{\mathsf d_{\mathsf{obs}}(#1,#2)}
+\newcommand\Distobspsymb[1]{\mathsf d_{\mathsf{obs},#1}}
+\newcommand\Distobsp[3]{\Distobspsymb{#1}(#2,#3)}
+
+\newcommand\Fibloc[1]{\mathsf T#1}
+
+\newcommand\Cuball[1]{\mathcal B#1}
+\newcommand\Cuballp[1]{\mathcal B(#1)}
+%\newcommand\Cuballr[2]{\mathcal B_{#1}[#2]}
+\newcommand\Cuballr[2]{\Cuball{\Crel{#1}{#2}}}
+
+% Cone local
+\newcommand\Cloc[2]{{#1}_{#2}}
+
+\newcommand\Rem[1]{\widetilde{#1}}
+
+\newcommand\Probared[2]{\mathbb{P}(#1\downarrow #2)}
+
+\newcommand\Tamed[2]{#1\cdot #2}
+
+\newcommand\Mark[2]{{#1}^{#2}}
+
+\newcommand\Oempty{\Seqempty}
+
+
+\newcommand\Tone{\One}
+\newcommand\Labels{\cL}
+
+\newcommand\Onec{()}
+\newcommand\Oneif[2]{#1\cdot#2}
+
+\newcommand\Finseq[1]{{#1}^{<\omega}}
+
+\newcommand\Ocons[2]{\Tuple{#1} #2}
+\newcommand\Osingle[1]{\langle#1\rangle}
+\newcommand\Ofinal[1]{\mathsf{O}(#1)}
+
+\newcommand\Reltr[1]{\mathrel{\mathord{#1}^*}}
+%\newcommand\Kminus{\overset{.} -}
+
+\newcommand\Lpcfst{\mathsf S_\Labels}
+\newcommand\Evallst{\mathsf{Ev}_\Labels}
+
+\newcommand\Pweight[2]{\mathsf w(#1,#2)}
+\newcommand\Pcompl[2]{\mathsf c(#1,#2)}
+% \newcommand\Probared[2]{\mathsf P(#1\downarrow#2)}
+\newcommand\Inistate[1]{\State{#1}{\Stempty}}
+
+\newcommand\Nhead[2]{\mathsf H(#1,#2)}
+
+%\newcommand\Expect[1]{\mathsf E(#1)}
+
+\newcommand\Cantbopen[1]{\mathord\uparrow#1}
+\newcommand\Len[1]{\mathsf{len}(#1)}
+
+%\newcommand\PPCFlab{\PPCF_\Labels}
+
+\newcommand\Pcfst{\mathsf S}
+\newcommand\Evalst{\mathsf{Ev}}
+\newcommand\Evdom[1]{\cD(#1)}
+
+\newcommand{\Labext}{\mathsf{lab}}
+\newcommand\PPCFlab{\PPCF_\Labext}
+\newcommand\PCFlab{\PCF_\Labext}
+\newcommand\Clabext{\mathsf{lc}}
+\newcommand\PPCFlc{\PPCF_\Clabext}
+
+\newcommand\Cantor{\cC}
+\newcommand\Cantorfin{\Cantor_0}
+\newcommand\Ospace{\Cantorfin}
+\newcommand\Evalstlab{\Evalst_\Labext}
+\newcommand\Evalstlc{\Evalst_\Clabext}
+\newcommand\Evalstlcsh{\Evalst_\Clabext^\eta}
+%\newcommand\Evalstlcsh{\Evalst_\Clabext^{\mathord +}}
+\newcommand\Evalstlcshinv{\Evalst_\Clabext^{-\eta}}
+\newcommand\Pcfstlab{\Pcfst_\Labext}
+\newcommand\Pcfstlc{\Pcfst_\Clabext}
+\newcommand\Striplab[1]{\underline{#1}}
+\newcommand\Striplc[1]{\underline{#1}}
+\newcommand\Evdomlab[1]{\cD_\Labext(#1)}
+\newcommand\Evdomlc[1]{\cD_\Clabext(#1)}
+\newcommand\Complstlab{\mathsf c_\Labext}
+
+\newcommand\Dicelab[2]{\operatorname{\mathsf{lcoin}}(#1,#2)}
+
+\newcommand\Labof[1]{\mathsf{lab}(#1)}
+\newcommand\Lcof[1]{\mathsf{lc}_{#1}}
+
+\newcommand\Pcfspy[2]{\mathsf{sp}_{#1}(#2)}
+
+\newcommand\Evalstf[1]{\mathsf{Ev}(#1)}
+\newcommand\Evalstlabf[1]{\Evalstlab(#1)}
+\newcommand\Evalstlabfp[2]{\Evalstlab(#1)_{#2}}
+
+\newcommand\Eventconvz[1]{{#1}\downarrow\Num 0}
+
+\newcommand\Proba[1]{\mathbb P_{#1}}
+\newcommand\Expect[1]{\mathbb E(#1)}
+
+\newcommand\Spy[1]{\mathsf{sp}_{#1}}
+
+
+\newcommand\Tamedc[2]{{#1}^{\langle#2\rangle}}
+\newcommand\Tdistobs[3]{\mathsf d^{\langle#1\rangle}_{\mathsf{obs}}(#2,#3)}
+\newcommand\Tdistobsf[1]{\mathsf d^{\langle#1\rangle}}
+
+\newcommand\Ldistobs[2]{\mathsf d_{\mathsf{lin}}(#1,#2)}
+
+\newcommand\Undef{\mathord\uparrow}
+\newcommand\Eset[1]{\{#1\}}
+
+\newcommand\Pneg[2]{\nu_{#1}(#2)}
+
+\newcommand\Zeroc[1]{0_{#1}}
+\newcommand\Underc[1]{\underline{#1}}
+\newcommand\Sseq[4]{#1\vdash #2:#3:#4}
+
+\newcommand\Sfun{{\mathsf S}}
+%\newcommand\Sfun{\bm{\mathsf{S}}}
+%\newcommand\Scfun{\mathbf S_{\mathsf{can}}}
+\newcommand\Scfun{\Sfun_{\Into}}
+\newcommand\Sproj[1]{\operatorname\pi_{#1}}
+\newcommand\Sin[1]{\operatorname{\iota}_{#1}}
+%\newcommand\Ssum{\operatorname{\mathsf s}}
+\newcommand\Ssum{\sigma}
+\newcommand\Sflip{\operatorname{\mathsf c}}
+\newcommand\Sflipl[1]{\Sflip(#1)}
+\newcommand\Scflip{\widetilde{\Sflip}}
+% \newcommand\Stuple[1]{\Tuple{#1}_{\Sfun}}
+\newcommand\Stuple[1]{\llangle{#1}\rrangle}
+\newcommand\Sctuple[1]{\Tuple{#1}_{\Scfun}}
+\newcommand\Smont{\operatorname{\mathsf L}}
+\newcommand\Smontz{\Smont^0}
+\newcommand\Scmont{\widetilde{\Smont}}
+\newcommand\Sstr{\operatorname\phi}
+\newcommand\Sstrs{\Sstr^\Sym}
+\newcommand\Sstrc{\Sstr^{\multimap}}
+\newcommand\Sdiff{\operatorname\partial}
+\newcommand\Sdiffuc{\operatorname\partial'}
+\newcommand\Sdiffcaold{\delta}
+\newcommand\Sdiffca{\tilde\partial}
+\newcommand\Sdiffctx[2]{\Sdiff(#1,#2)}
+
+\newcommand\Sdfun{\operatorname{\mathsf D}}
+\newcommand\Sdfunc{\Sdfun_{\mathsf{cur}}} % curryfied version
+\newcommand\Sdfunint{\Sdfun_{\mathsf{int}}} % curryfied version
+
+
+\newcommand\Coh[1]{\coh_{#1}}
+\newcommand\Scoh[1]{\scoh_{#1}}
+\newcommand\Incoh[1]{\incoh_{#1}}
+\newcommand\Sincoh[1]{\sincoh_{#1}}
+\newcommand\Neu[1]{\equiv_{#1}}
+%\newcommand\Cl[1]{\textsf{Cl}({#1})}
+%\newcommand\Clfin[1]{\mbox{\textsf{Cl}}_{\mathsf{fin}}({#1})}
+\newcommand\Matappa[2]{{#1}\cdot{#2}}
+\newcommand\Matappap[2]{\left({#1}\cdot{#2}\right)}
+
+
+\newcommand\Saxcom{(\textbf{S-com})}
+\newcommand\Saxzero{(\textbf{S-zero})}
+\newcommand\Saxass{(\textbf{S-assoc})}
+\newcommand\Saxwit{(\textbf{S-witness})}
+\newcommand\Saxdist{(\textbf{S$\ITens$-dist})}
+\newcommand\Saxfun{(\textbf{S$\ITens$-fun})}
+\newcommand\Saxprod{(\textbf{S$\IWith$-pres})}
+
+\newcommand\Csaxepi{(\textbf{CS-epi})}
+\newcommand\Csaxsum{(\textbf{CS-sum})}
+\newcommand\Ccsaxepi{(\textbf{CCS-epi})}
+\newcommand\Ccsaxsum{(\textbf{CCS-sum})}
+\newcommand\Csaxflip{(\textbf{CS-flip})}
+
+\newcommand\Sprodisoz{\mathsf p^0}
+\newcommand\Sprodisot{\mathsf p^2}
+
+\newcommand\Sone{\One}
+\newcommand\Sonelem{\ast}
+
+\newcommand\Win[1]{\Inj{#1}^{\with}}
+\newcommand\Wdiag{\Delta^\with}
+\newcommand\Into{\mathsf I}
+
+\newcommand\Diffst{\mathsf d}
+\newcommand\Obj[1]{\mathsf{Obj(#1)}}
+
+\newcommand\Fdom{\mathsf{dom}}
+
+\newcommand\Diffofst[1]{{#1}^{+}}
+\newcommand\Diffofste[1]{{\overline{#1}}^{+}}
+\newcommand\Stofdiff[1]{{#1}^{-}}
+
+\newcommand\Sdiffst{\widetilde\partial}
+
+\newcommand\Diffrac[2]{\frac{d #1}{d #2}}
+\newcommand\Intcc[2]{[#1,#2]}
+
+%\newcommand\Sfunadd{\mathsf{add}}
+%\newcommand\Sfunadd{\sigma}
+\newcommand\Sfunadd{\tau}
+
+\newcommand\Symbdiff[1]{\mathsf d_{#1}}
+
+\newcommand\Forec[2]{\mathsf{rec}(#1,#2)}
+\newcommand\Trec[3]{\mathsf{rec}\,(#1:#2)\,#3}
+
+\newcommand\Tinto{\boldsymbol\Delta_\Into}
+
+\newcommand\Adj{\mathrel{\dashv}}
+
+\newcommand\Ftunit{\eta}
+\newcommand\Ftcounit{\epsilon}
+
+\newcommand\Daxchain{($\partial$\textbf{-chain})}
+\newcommand\Daxlocal{($\partial$\textbf{-local})}
+\newcommand\Daxclocal{(\textbf{C}$\partial$\textbf{-local})}
+\newcommand\Daxclin{(\textbf{C}$\partial$\textbf{-lin})}
+\newcommand\Daxlin{($\partial$\textbf{-lin})}
+\newcommand\Daxwith{($\partial$\textbf{-}$\mathord{\IWith}$)}
+\newcommand\Daxcwith{(\textbf{C}$\partial$\textbf{-}$\mathord{\IWith}$)}
+\newcommand\Daxschwarz{($\partial$\textbf{-Schwarz})}
+\newcommand\Daxcschwarz{(\textbf{C}$\partial$\textbf{-Schwarz})}
+\newcommand\Daxcchain{(\textbf{C}$\partial$\textbf{-chain})}
+\newcommand\Tysub[2]{#1 - #2}
+\newcommand\Tykind[1]{\overline{#1}}
+\newcommand\Typrod[3]{\Pi\,(#1:#2)#3}
+
+\newcommand\Cseq[1]{#1\vdash}
+\newcommand\Tyseq[2]{#1\vdash #2}
+\newcommand\Kindofty[1]{\underline{#1}}
+
+\newcommand\Emptycont{(\,)}
+\newcommand\Treesep{\quad\quad}
+\newcommand\Textsep{\hspace{6em}}
+
+\newcommand\Sdfunit{\zeta}
+\newcommand\Sdfmult{\theta}
+\newcommand\Sdfstr{\psi}
+
+\newcommand\Kllin{\mathsf{Lin}_{\mathord\oc}}
+
+\newcommand\Tdiffsymb{\mathsf D}
+\newcommand\Tdiff[1]{\Tdiffsymb{#1}}
+\newcommand\Tdiffm[2]{\Tdiffsymb^{#1}{#2}}
+\newcommand\Tdnat[1]{\Tdiffsymb^{#1}\Tnat}
+\newcommand\Lproj[2]{\Sproj{#1}(#2)}
+\newcommand\Lprojd[3]{\Sproj{#1}^{#2}(#3)}
+\newcommand\Lprojs[1]{\Sproj{#1}}
+\newcommand\Linj[2]{\Sin{#1}(#2)}
+\newcommand\Linjd[3]{\Sin{#1}^{#2}(#3)}
+\newcommand\Lin[2]{\Sin{#1}(#2)}
+\newcommand\Lsum[1]{\Sdfmult(#1)}
+\newcommand\Lsumd[2]{\Sdfmult^{#1}(#2)}
+\newcommand\Lflip[1]{\Sflip(#1)}
+\newcommand\Lflipd[2]{\Sflip^{#1}(#2)}
+\newcommand\Lflipdl[3]{\Sflip^{#1}_{#2}(#3)}
+\newcommand\Lflipl[2]{\Sflip_{#1}(#2)}
+\newcommand\Lsums{\Sdfmult}
+% \newcommand\Ldlet[3]{\text{xxxxxx}\color{red}{\partial(#1,#2,#3)}}
+\newcommand\Ldlet[3]{\partial(#1,#2,#3)}
+\newcommand\Ldletm[4]{\partial^{#1}(#2,#3,#4)}
+\newcommand\Ldletv[2]{\partial({#1},{#2})}
+%\newcommand\Ldletv[2]{{\color{red}\partial({#1},{#2})}}
+\newcommand\Ldletvm[3]{\partial^{#1}({#2},{#3})}
+\newcommand\Lzero{0}
+\newcommand\Lzerot[1]{0^{#1}}
+\newcommand\Lplus[2]{#1+#2}
+\newcommand\Ldiff[1]{\Tdiff{#1}}
+\newcommand\Ldapp[2]{(\Tdiff{#1}){#2}}
+\newcommand\Ldappm[3]{(\Tdiffm{#1}{#2}){#3}}
+\newcommand\Ldiffp[1]{\Tdiff({#1})}
+\newcommand\Lfix[1]{\mathsf Y#1}
+\newcommand\Llet[4]{\mathsf{let}^{#1}(#2,#3,#4)}
+\newcommand\Llett[5]{\mathsf{let}_{#1}^{#2}(#3,#4,#5)}
+\newcommand\Lif[4]{\mathsf{if}^{#1}(#2,#3,#4)}
+\newcommand\Lift[5]{\mathsf{if}_{#1}^{#2}(#3,#4,#5)}
+\newcommand\Lpred[2]{\operatorname{\mathsf{pred}}^{#1}(#2)}
+\newcommand\Lsucc[2]{\operatorname{\mathsf{succ}}^{#1}(#2)}
+
+\newcommand\Sdfunpart[2]{\Sdfun_{#1}#2}
+
+\newcommand\Wseq[3]{#1\vdash_{w}#2:#3}
+
+\renewcommand\Red{\to}
+
+\newcommand\Tbundle[1]{\mathsf T#1}
+
+\newcommand\Cpolike{Scott}
+
+\newcommand\Mlin[1]{\widetilde{#1}}
+
+\newcommand\Laxint{(\textbf{Int})}
+
+\newcommand\Snatit[1]{\overline{\mathsf{it}}(#1)}
+
+\newcommand\Slet{\overline{\mathsf{let}}}
+
+\newcommand\Sfunpart[1]{\Sfun_{#1}}
+
+\newcommand\Lineq{\sim_{\mathsf{lin}}}
+\newcommand\Pluseq{\sim_{+}}
+\newcommand\Linred{\to_{\mathsf{lin}}}
+\newcommand\Topred{\to_{\mathsf{top}}}
+
+% Evaluation contexts
+\newcommand\Echole{[\ ]}
+\newcommand\Ecfilled[2]{#1[#2]}
+
+% Name of typing rules
+\newcommand\Trvar{(\textbf{var})}
+\newcommand\Trabs{(\textbf{abs})}
+\newcommand\Trapp{(\textbf{app})}
+\newcommand\Trfix{(\textbf{fix})}
+\newcommand\Trnum{(\textbf{num})}
+\newcommand\Trsuc{(\textbf{suc})}
+\newcommand\Trpred{(\textbf{prd})}
+\newcommand\Trif{(\textbf{if})}
+\newcommand\Trzero{(\textbf{0})}
+\newcommand\Trplsub{(+\textbf{-sub})}
+\newcommand\Trprojo{(\textbf{proj1})}
+\newcommand\Trprojt{(\textbf{proj2})}
+\newcommand\Trprojd{(\textbf{projd})}
+\newcommand\Trinj{(\textbf{inj})}
+\newcommand\Trsum{(\textbf{sum})}
+\newcommand\Trcirc{(\textbf{circ})}
+\newcommand\Trdiff{(\textbf{diff})}
+\newcommand\Trlet{(\textbf{let})}
+\newcommand\Trlin{(\textbf{lin})}
+
+\newcommand\Itrvar{(\textbf{i-var})}
+\newcommand\Itrabs{(\textbf{i-abs})}
+\newcommand\Itrapp{(\textbf{i-app})}
+\newcommand\Itrfix{(\textbf{i-fix})}
+\newcommand\Itrnum{(\textbf{i-num})}
+\newcommand\Itrsuc{(\textbf{i-suc})}
+\newcommand\Itrpredz{(\textbf{i-prd}$0$)}
+\newcommand\Itrpredp{(\textbf{i-prd}$+$)}
+\newcommand\Itrifz{(\textbf{i-if}$0$)}
+\newcommand\Itrifp{(\textbf{i-if}$+$)}
+\newcommand\Itrzero{(\textbf{i-0})}
+\newcommand\Itrplsub{(+\textbf{i--sub})}
+\newcommand\Itrproj{(\textbf{i-proj})}
+\newcommand\Itradd{(\textbf{i-add})}
+\newcommand\Itrprojo{(\textbf{i-proj1})}
+\newcommand\Itrprojt{(\textbf{i-proj2})}
+\newcommand\Itrprojd{(\textbf{i-projd})}
+\newcommand\Itrinj{(\textbf{i-inj})}
+\newcommand\Itrsumzz{(\textbf{i-sum}$00$)}
+\newcommand\Itrsumuz{(\textbf{i-sum}$10$)}
+\newcommand\Itrsumzu{(\textbf{i-sum}$01$)}
+\newcommand\Itrsum{(\textbf{i-sum})}
+\newcommand\Itrcirc{(\textbf{i-circ})}
+\newcommand\Itrdiffz{(\textbf{i-diff}$0$)}
+\newcommand\Itrdiffu{(\textbf{i-diff}$1$)}
+\newcommand\Itrdiff{(\textbf{i-diff})}
+\newcommand\Itrlet{(\textbf{i-let})}
+\newcommand\Itrlin{(\textbf{i-lin})}
+
+
+
+\newcommand\Iwtradd{(\textbf{i-add})}
+
+\newcommand\Trcl[1]{#1^{\ast}}
+
+\newcommand\Stop{\Top}
+
+\newcommand\Tdersize[1]{\mathsf{sz}(#1)}
+\newcommand\Lcht[1]{\mathsf{lh}(#1)}
+
+\newcommand\Simplicit{sum-implicit}
+\newcommand\Sharp{sharp}
+\newcommand\Path{word}
+
+% Grammar of stacks for the machine
+\newcommand\Stempty{()}
+\newcommand\Starg[2]{\mathsf{arg}(#1)\cdot#2}
+\newcommand\Stdiff[2]{\mathsf{D}(#1)\cdot#2}
+\newcommand\Stsucc[1]{\mathsf{succ}\cdot#1}
+\newcommand\Stpred[1]{\mathsf{pred}\cdot#1}
+\newcommand\Stif[4]{\mathsf{if}(#1,#2,#3)\cdot#4}
+\newcommand\Stoneif[1]{\mathsf{seq}(#1)}
+\newcommand\Stlet[4]{\mathsf{let}(#1,#2,#3)\cdot#4}
+% \newcommand\State[5]{\langle#1,#2,#3,#4,#5\rangle}
+% \newcommand\State[2]{\langle#1,#2\rangle}
+\newcommand\Stinit[2]{\mathsf I\langle#1,#2\rangle}
+\newcommand\Stfin[2]{\mathsf F\langle#1,#2\rangle}
+\newcommand\Stcons{\cdot}
+
+\newcommand\Stseq[2]{#1:#2\vdash\Tnat}
+\newcommand\Tseqst[2]{#1:#2\vdash\Tnat}
+\newcommand\Stseqi[4]{#1:#2:#3\vdash#4:\Tnat}
+\newcommand\Etseq[1]{\vdash #1:\Tnat}
+\newcommand\Etseqi[2]{\vdash #1:#2:\Tnat}
+
+\newcommand\Stredd[1]{\to^{#1}}
+\newcommand\Stred{\to}
+\newcommand\Stredw{\to_{\mathsf{w}}}
+
+\newcommand\State[3]{(#1,#2,#3)}
+\newcommand\Statew[4]{(#1,#2,#3,#4)}
+
+\newcommand\Pempty{\langle\,\rangle}
+
+\newcommand\Stauto{$\ast$-autonomous}
+
+\newcommand\DILL{\hbox{\textsf{DiLL}}}
+
+\newcommand\Tonat{\Rightarrow}
+
+\newcommand\Monz{\mu^0}
+\newcommand\Mont{\mu^2}
+\newcommand\Mong[1]{\mu^{#1}}
+
+\newcommand\Tseqact[2]{#1\cdot#2}
+
+\newcommand\Ttermi[3]{#1:#2:#3}
+\newcommand\Tseqi[4]{#1\vdash\Ttermi{#2}{#3}{#4}}
+\newcommand\Contca[1]{\underline{#1}}
+\newcommand\Contz[1]{0_{#1}}
+
+\newcommand\Itintt[2]{|#1|_{#2}}
+\newcommand\Itintc[1]{\Bot(#1)}
+% \newcommand\Itints[3]{\|#1\|_{#2}(#3)}
+\newcommand\Itints[3]{\|#1\vdash #3\|_{#2}}
+\newcommand\Itintctx[1]{|#1|}
+
+\newcommand\Msrs[1]{\Mfin{#1}}
+\newcommand\Tared{\Red_{\mathsf{top}}}
+
+\newcommand\Rsca[1]{\underline{#1}}
+\newcommand\Rsred[1]{\to_{#1}}
+
+% \newcommand\Lang{\Lambda}
+% \newcommand\States{\Theta}
+\newcommand\Cdsymb{\mathsf{cd}}
+% \newcommand\Lang{\Cdsymb\mathsf{PCF}}
+% \newcommand\States{\Cdsymb\mathsf{KM}}
+\newcommand\Lang{\PCF_\Cdsymb}
+\newcommand\States{\Theta_\Cdsymb}
+\newcommand\Statessi{\Theta_\Cdsymb^0}
+\newcommand\Statesw{\check\Theta_\Cdsymb}
+\newcommand\Strednd{\to_{\mathsf{nd}}}
+
+\newcommand\Stctx[1]{\langle{#1}\rangle}
+
+\newcommand\Rev[1]{\overline{#1}}
+
+\newcommand\Rcycle[1]{\underrightarrow{#1}}
+\newcommand\Lcycle[1]{\underleftarrow{#1}}
+
+\newcommand\Itopenn[4]{|#1\vdash #2:#3|^{(#4)}}
+\newcommand\Itopen[3]{|#1\vdash #2:#3|}
+
+\newcommand\Mstrans[2]{\mathsf L(#1,#2)}
+\newcommand\Mscard[1]{\##1}
+
+\newcommand\Mspmap[2]{{#1}\ast{#2}}
+
+\newcommand\Qforg{\mathsf Q}
+
+\newcommand\Pchoice[3]{\mathsf{pc}^{#1}(#2,#3)}
+\newcommand\Spchoice{\overline{\mathsf{pc}}}
+
+\newcommand\Langp{\Lang^{\mathsf p}}
+
+\newcommand\Wcell[1]{\check{#1}}
+\newcommand\Intow{\check\Into}
+
+\newcommand\Dwords[1]{\mathsf{w}(#1)}
+\newcommand\Dwordl[1]{\mathsf w_0(#1)}
+\newcommand\Nwcell[3]{\Sigma_{#1}(#2:#3)}
+
+\newcommand\Wempty{\Pempty}
+\newcommand\Swcell[1]{\mathsf{ws}(#1)}
+
+\newcommand\SystF{System \textsf F}
+\newcommand\LL{\hbox{\textsf{LL}}}
+\newcommand\Staraut{\(\ast\)-autonomous}
+\newcommand\Intlog{Intuitionistic Logic}
+
+\newcommand\Set[1]{\{#1\}}
+
+\newcommand\Tanspace[2]{\mathsf T_{#1}#2}
+\newcommand\Tanbundle[1]{\mathsf T{#1}}
+
+\newcommand\CD{\textsf{CD}}
+
+\newcommand\Dbimon{\mathbb D}
+\newcommand\Stuplet[1]{\Stuple{#1}^{\mathord\otimes}}
+
+\newcommand\Sfunmonm{\tau}
+
+\newcommand\Sfunlift{\mathsf l}
+\newcommand\Sfunstr{\phi}
+\newcommand\Sfunstri{\phi^{\mathord\multimap}}
+
+\newcommand\Dbimonm{\overline\Sfunmonm}
+\newcommand\Dbimonl{\overline\Sfunlift}
+
+\newcommand\Klocid{\Id^{(\oc)}}
+
+\newcommand\Dfun{\widetilde{\mathsf D}}
+\newcommand\Dfunpart[1]{\Dfun_{#1}}
+
+\newcommand\Derfun{\mathsf{Der}}
+\newcommand\Derfunm[1]{\mathsf{Der}_{#1}}
+
+% \newcommand\Sfunlaxt{\widetilde\phi^2}
+\newcommand\Sfunlaxt{\widetilde\phi}
+
+\newcommand\Ddiff{\widetilde\partial}
+
+\newcommand\ExpMon[1]{\mu^{#1}}
+
+\newcommand\Indactms[2]{#1\cdot#2}
+
+\newcommand\Wstren[1]{\psi^{#1}}
+\newcommand\Dfunstr[1]{\Psi^{#1}}
+\newcommand\Dfunstrf{\Psi^{\mathord\multimap}}
+%\newcommand\Swithiso{\mu^{\mathord\with}}
+\newcommand\Swithiso{\widetilde\psi}
+
+\newcommand\Dmonu{\zeta}
+\newcommand\Dmonm{\theta}
+
+\newcommand\Ap[2]{#1\left(#2\right)}
+\newcommand\A[2]{{#1}\hspace{1pt}#2}
+
+\newcommand\Dfunint{\Dfun^{\mathsf{int}}}
+\newcommand\Dfunmon{\widetilde\Psi}
+
+\newcommand\Ifd[4]{\mathsf{if}^{#1}(#2,#3,#4)}
+\newcommand\Succd[2]{\mathsf{succ}^{#1}(#2)}
+\newcommand\Predd[2]{\mathsf{pred}^{#1}(#2)}
+\newcommand\Letd[4]{\mathsf{let}^{#1}(#2,#3,#4)}
+
+\renewcommand\Diffsymb{\mathsf D}
+
+\newcommand\Pd[1]{\operatorname{\Diffsymb}#1}
+\newcommand\Pdinj[3]{\iota^{#1}_{#2}(#3)}
+\newcommand\Pdproj[3]{\pi^{#1}_{#2}(#3)}
+\newcommand\Pdsum[2]{\theta^{#1}(#2)}
+\newcommand\Pdflip[3]{\mathsf{c}^{#1}_{#2}(#3)}
+
+\newcommand\CDPCF{\PCF_\Diffsymb}
+
+\newcommand\Diffm[2]{\partial(#1,#2)}
+
+\newcommand\Extseq[1]{\langle#1\rangle}
+
+\makeatletter
+\newcommand{\dotminus}{\mathbin{\text{\@dotminus}}}
+
+\newcommand{\@dotminus}{%
+  \ooalign{\hidewidth\raise1ex\hbox{.}\hidewidth\cr$\m@th-$\cr}%
+}
+\makeatother
+
+\newcommand\Kminus{\mathrel{\dotminus}}
+
+\newcommand\Fsmod[2]{#1\langle#2\rangle}
+
+\newcommand\Rellift[1]{{#1}^\dagger}
+
+\newcommand\Pcfredf{\rho_{\mathsf{cd}}}
+\newcommand\Coeffs{\mathbb{K}}
+
+\newcommand\Holef[1]{[#1]}
+\newcommand\Holee{\Holef\ }
+\newcommand\Termofst[1]{\Stctx{#1}}
+
+% \newcommand\Mslift[1]{\mathsf{ms}(#1)}
+\newcommand\Mslift[1]{#1^\dagger}
+% \newcommand\Mslifttr[1]{\mathsf{ms}(#1)^\ast}
+\newcommand\Mslifttr[1]{#1^{\dagger\ast}}
+
+\newcommand\Snatiso{\chi_\Snat}
+
+\newcommand\BL[1]{{\color{blue}#1}}
+\newcommand\RD[1]{{\color{red}#1}}
+
+
+
